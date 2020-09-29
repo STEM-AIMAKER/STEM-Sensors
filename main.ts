@@ -50,4 +50,45 @@ namespace HANSHIN_STEM_SENSORS {
         serial.writeString("ATGYDATA")
     }
 
+    export function setPM_T7Model(mode: MODE, activeInterval: number) : void {
+        if( mode === MODE.Active ) {
+            let modeCmd= "ATMODE="+activeInterval
+            serial.writeString(modeCmd)
+        }
+        else {
+            serial.writeString("ATDATA")
+        }
+    }
+
+    export function queryPM_T7Data() : void {
+        serial.writeString("ATDATA")
+    }
+
+    export function setSGP30Model(mode: MODE, activeInterval: number) : void {
+        if( mode === MODE.Active ) {
+            let modeCmd= "ATMODE="+activeInterval
+            serial.writeString(modeCmd)
+        }
+        else {
+            serial.writeString("ATDATA")
+        }
+    }
+
+    export function querySGP30Data() : void {
+        serial.writeString("ATDATA")
+    }
+
+    export function setSHT31Model(mode: MODE, activeInterval: number) : void {
+        if( mode === MODE.Active ) {
+            let modeCmd= "ATMODE="+activeInterval
+            serial.writeString(modeCmd)
+        }
+        else {
+            serial.writeString("ATDATA")
+        }
+    }
+
+    export function querySHT31Data() : void {
+        serial.writeString("ATDATA")
+    }
 }
