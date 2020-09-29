@@ -189,7 +189,7 @@ namespace HANSHIN_STEM_SENSORS {
     let line = ""
     serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function () {
         line = serial.readLine()
-        basic.showString(line)
+        basic.showString(line +"#")
         switch( sensor ) {
             default:
                 break;
