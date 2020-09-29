@@ -16,7 +16,9 @@ namespace HANSHIN_STEM_SENSORS {
     let humidity=0.0
 
     enum MODE {
+        //% blockId="Active" block="Active"
         Active=0,
+        //% blockId="Passive" block="Passive"
         Passive=1
     }
 
@@ -92,6 +94,7 @@ namespace HANSHIN_STEM_SENSORS {
     }
 
     //% blockId=setMPU6050Model block="Set MPU6050 Model to |mode=%mode active interval time=%activeInterval second"
+    //% mode.fieldEditor="gridpicker" mode.fieldOptions.columns=1
     //% activeInterval.min=1 activeInterval.max=9 activeInterval.defl=5
     export function setMPU6050Model(mode: MODE, activeInterval: number) : void {
         sensor = 1
@@ -111,6 +114,7 @@ namespace HANSHIN_STEM_SENSORS {
     }
 
     //% blockId=setGyroModel block="Set Gyro Model to |mode=%mode active interval time=%activeInterval second"
+    //% mode.fieldEditor="gridpicker" mode.fieldOptions.columns=1
     //% activeInterval.min=1 activeInterval.max=9 activeInterval.defl=5
     export function setGyroModel(mode: MODE, activeInterval: number) : void {
         sensor = 2
@@ -130,6 +134,7 @@ namespace HANSHIN_STEM_SENSORS {
     }
 
     //% blockId=setPM_T7Model block="Set PM_T7 Model to |mode=%mode active interval time=%activeInterval second"
+    //% mode.fieldEditor="gridpicker" mode.fieldOptions.columns=1
     //% activeInterval.min=1 activeInterval.max=9 activeInterval.defl=5
     export function setPM_T7Model(mode: MODE, activeInterval: number) : void {
         sensor = 3
@@ -149,6 +154,7 @@ namespace HANSHIN_STEM_SENSORS {
     }
 
     //% blockId=setSGP30Model block="Set SGP30 Model to |mode=%mode active interval time=%activeInterval second"
+    //% mode.fieldEditor="gridpicker" mode.fieldOptions.columns=1
     //% activeInterval.min=1 activeInterval.max=9 activeInterval.defl=5
     export function setSGP30Model(mode: MODE, activeInterval: number) : void {
         sensor = 4
@@ -168,6 +174,7 @@ namespace HANSHIN_STEM_SENSORS {
     }
 
     //% blockId=setSHT31Model block="Set SHT31 Model to |mode=%mode active interval time=%activeInterval second"
+    //% mode.fieldEditor="gridpicker" mode.fieldOptions.columns=1
     //% activeInterval.min=1 activeInterval.max=9 activeInterval.defl=5
     export function setSHT31Model(mode: MODE, activeInterval: number) : void {
         sensor = 5
