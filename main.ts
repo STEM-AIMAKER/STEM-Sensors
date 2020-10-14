@@ -20,7 +20,10 @@ namespace HANSHIN_STEM_SENSORS {
     let co2=0
     let temperature=0.0
     let humidity=0.0
-
+    let dht11_humidity = -999.0
+    let dht11_temperature = -999.0
+    let dht11_readSuccessful = false
+    
     export enum MODE {
         //% blockId="Active" block="Active"
         Active=0,
@@ -45,17 +48,17 @@ namespace HANSHIN_STEM_SENSORS {
 
     //% blockId=getGyroX block="Get Gyro X" 
     export function getGyroX() : number {
-        return MPU6050_x;
+        return Gyro_x;
     }
 
     //% blockId=getGyroY block="Get Gyro Y" 
     export function getGyroY() : number {
-        return MPU6050_y;
+        return Gyro_y;
     }
 
     //% blockId=getGyroZ block="Get Gyro Z" 
     export function getGyroZ() : number {
-        return MPU6050_z;
+        return Gyro_z;
     }
 
     //% blockId=getPM25 block="Get PM25" 
@@ -96,7 +99,8 @@ namespace HANSHIN_STEM_SENSORS {
         buffer = serial.readString()
         basic.pause(100)
         serial.writeString("AT")
-        basic.pause(100)
+        basic.pause(300)
+        serial.readString();
     }
 
     //% blockId=setMPU6050Model block="Set MPU6050 Model to |mode=%mode active interval time=%activeInterval second"
@@ -198,10 +202,81 @@ namespace HANSHIN_STEM_SENSORS {
         sensor = 5
         serial.writeString("AT+DATA")
     }
- 
+
+    //% block="Query DHT11 Data pin $dataPin|Wait 2 sec after query $wait"
+    //% wait.defl=true
+    export function queryDHT11Data(dataPin: DigitalPin, wait: boolean) 
+    {
+        //initialize
+        let startTime: number = 0
+        let endTime: number = 0
+        let checksum: number = 0
+        let checksumTmp: number = 0
+        let dataArray: boolean[] = []
+        let resultArray: number[] = []
+        for (let index = 0; index < 40; index++) dataArray.push(false)
+        for (let index2 = 0; index2 < 5; index2++) resultArray.push(0)
+        dht11_humidity = -999.0
+        dht11_temperature = -999.0
+        dht11_readSuccessful = false
+
+        startTime = input.runningTimeMicros()
+0
+        //request data
+        pins.digitalWritePin(dataPin, 0) //begin protocol
+        basic.pause(18)
+       // pins.setPull(dataPin, PinPullMode.PullUp)
+        pins.digitalReadPin(dataPin)
+        control.waitMicros(20)
+        while (pins.digitalReadPin(dataPin) == 1);
+        while (pins.digitalReadPin(dataPin) == 0); //sensor response
+        while (pins.digitalReadPin(dataPin) == 1); //sensor response
+
+        //read data (5 bytes)
+        for (let index3 = 0; index3 < 40; index3++) {
+            while (pins.digitalReadPin(dataPin) == 1);
+            while (pins.digitalReadPin(dataPin) == 0);
+            control.waitMicros(28)
+            //if sensor pull up data pin for more than 28 us it means 1, otherwise 0
+            if (pins.digitalReadPin(dataPin) == 1) dataArray[index3] = true
+        }
+
+        endTime = input.runningTimeMicros()
+
+        //convert byte number array to integer
+        for (let index4 = 0; index4 < 5; index4++)
+            for (let index22 = 0; index22 < 8; index22++)
+                if (dataArray[8 * index4 + index22]) resultArray[index4] += 2 ** (7 - index22)
+
+        //verify checksum
+        checksumTmp = resultArray[0] + resultArray[1] + resultArray[2] + resultArray[3]
+        checksum = resultArray[4]
+        if (checksumTmp >= 512) checksumTmp -= 512
+        if (checksumTmp >= 256) checksumTmp -= 256
+        if (checksum == checksumTmp) dht11_readSuccessful = true
+
+        //read data if checksum ok
+        if (dht11_readSuccessful) {
+            dht11_humidity = resultArray[0] + resultArray[1] / 100
+            dht11_temperature = resultArray[2] + resultArray[3] / 100
+        }
+        //wait 2 sec after query if needed
+        if (wait) basic.pause(2000)
+    }
+
+    //% blockId=getDHT11Humidity block="Get DHT11 humidity" 
+    export function getDHT11Humidity(): number {
+        return dht11_humidity;
+    }
+    
+    //% blockId=getDHT11Temperature block="Get DHT11 temperature" 
+    export function getDHT11Temperature(): number {
+        return dht11_temperature;
+    }
+
     let line = ""
     serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function () {
-        line = serial.readLine()
+        line = serial.readLine()       
         switch( sensor ) {
             default:
                 break;
@@ -249,6 +324,8 @@ namespace HANSHIN_STEM_SENSORS {
                 if(line.substr(0,1) === "-" )
                     temperature *= -1
                 humidity = parseFloat(line.substr(-5,5))
+
+                //basic.showNumber(temperature)
             }
                 break;
         }
