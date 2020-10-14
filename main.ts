@@ -1,6 +1,6 @@
 namespace HANSHIN_STEM_SENSORS {
     let buffer = ""
-    let sensor = 0;
+    let sensor=0
     let MPU6050_x=0
     let MPU6050_y=0
     let MPU6050_z=0
@@ -195,54 +195,54 @@ namespace HANSHIN_STEM_SENSORS {
     let line = ""
     serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function () {
         line = serial.readLine()
-        //basic.showString(line +"#")
         switch( sensor ) {
             default:
                 break;
             case 1: // MPU6050
             {
-                MPU6050_x= parseInt(line.substr(1,5).trim())
+                MPU6050_x= parseInt(line.substr(1,5))
                 if( line.substr(0,1) === "-")
                     MPU6050_x *= -1
-                MPU6050_y= parseInt(line.substr(7,5).trim())
+                MPU6050_y= parseInt(line.substr(7,5))
                 if( line.substr(6,1) === "-")
                     MPU6050_y *= -1
-                MPU6050_z= parseInt(line.substr(13,5).trim())
+                MPU6050_z= parseInt(line.substr(13,5))
                 if( line.substr(12,1) === "-")
                     MPU6050_z *= -1
             }
                 break;
             case 2: // Gyro
             {
-                Gyro_x= parseInt(line.substr(1,5).trim())
+                Gyro_x= parseInt(line.substr(1,5))
                 if( line.substr(0,1) === "-")
                     Gyro_x *= -1
-                Gyro_y= parseInt(line.substr(7,5).trim())
+                Gyro_y= parseInt(line.substr(7,5))
                 if( line.substr(6,1) === "-")
                     Gyro_y *= -1
-                Gyro_z= parseInt(line.substr(13,5).trim())
+                Gyro_z= parseInt(line.substr(13,5))
                 if( line.substr(12,1) === "-")
                     Gyro_z *= -1
             }
                 break;
             case 3: // PM_T7
             {
-                pm25 = parseInt(line.substr(0,4).trim())
-                pm10 = parseInt(line.substr(-4,4).trim())
+                pm25 = parseInt(line.substr(0,4))
+                pm10 = parseInt(line.substr(-4,4))
+                basic.showNumber(pm25)
             }
                 break;
-            case 4: // SGP30
+            case 4: // SGP30 
             {
-                tvoc = parseInt(line.substr(0,5).trim())
-                co2 = parseInt(line.substr(-5,5).trim())
+                tvoc = parseInt(line.substr(0,5))
+                co2 = parseInt(line.substr(-5,5))
             }
                 break;
             case 5: // SHT31 
             {
-                temperature = parseFloat(line.substr(1,5).trim())
+                temperature = parseFloat(line.substr(1,5))
                 if(line.substr(0,1) === "-" )
                     temperature *= -1
-                humidity = parseFloat(line.substr(-5,5).trim())
+                humidity = parseFloat(line.substr(-5,5))
             }
                 break;
         }
