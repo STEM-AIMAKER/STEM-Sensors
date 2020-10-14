@@ -21,7 +21,7 @@ input.onButtonPressed(Button.A, function () {
 After set sensor mode, get it's value when needed
 ```blocks
 input.onButtonPressed(Button.B, function () {
-    pm25 = HANSHIN_STEM_SENSORS.getPM25()
+    pm25 = HANSHIN_STEM_SENSORS.pM25()
     basic.showNumber(pm25)
 })
 ```

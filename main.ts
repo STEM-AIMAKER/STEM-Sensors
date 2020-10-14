@@ -24,63 +24,63 @@ namespace HANSHIN_STEM_SENSORS {
         Passive=1
     }
 
-    //% blockId=getMPU6050X block="Get MPU6050 X" 
-    export function getMPU6050X() : number {
+    //% blockId=mpu6050X block="Get MPU6050 X" 
+    export function mpu6050X() : number {
         return MPU6050_x;
     }
 
-    //% blockId=getMPU6050Y block="Get MPU6050 Y" 
-    export function getMPU6050Y() : number {
+    //% blockId=mpu6050Y block="Get MPU6050 Y" 
+    export function mpu6050Y() : number {
         return MPU6050_y;
     }
 
-    //% blockId=getMPU6050Z block="Get MPU6050 Z" 
-    export function getMPU6050Z() : number {
+    //% blockId=mpu6050Z block="Get MPU6050 Z" 
+    export function mpu6050Z() : number {
         return MPU6050_z;
     }
 
-    //% blockId=getGyroX block="Get Gyro X" 
-    export function getGyroX() : number {
+    //% blockId=gyroX block="Get Gyro X" 
+    export function gyroX() : number {
         return Gyro_x;
     }
 
-    //% blockId=getGyroY block="Get Gyro Y" 
-    export function getGyroY() : number {
+    //% blockId=gyroY block="Get Gyro Y" 
+    export function gyroY() : number {
         return Gyro_y;
     }
 
-    //% blockId=getGyroZ block="Get Gyro Z" 
-    export function getGyroZ() : number {
+    //% blockId=gyroZ block="Get Gyro Z" 
+    export function gyroZ() : number {
         return Gyro_z;
     }
 
-    //% blockId=getPM25 block="Get PM25" 
-    export function getPM25(): number {
+    //% blockId=pM25 block="Get PM25" 
+    export function pM25(): number {
         return pm25;
     }
 
-    //% blockId=getPM10 block="Get PM10" 
-    export function getPM10(): number {
+    //% blockId=pM10 block="Get PM10" 
+    export function pM10(): number {
         return pm10;
     }
 
-    //% blockId=getTVOC block="Get TVOC" 
-    export function getTVOC(): number {
+    //% blockId=tVOC block="Get TVOC" 
+    export function tVOC(): number {
         return tvoc;
     }
 
-    //% blockId=getCO2 block="Get CO2" 
-    export function getCO2(): number {
+    //% blockId=cO2 block="Get CO2" 
+    export function cO2(): number {
         return co2;
     }
 
-    //% blockId=getTemperature block="Get temperature" 
-    export function getTemperature(): number {
+    //% blockId=temperatureValue block="Get temperature" 
+    export function temperatureValue(): number {
         return temperature;
     }
 
-    //% blockId=getHumidity block="Get humidity" 
-    export function getHumidity(): number {
+    //% blockId=humidityValue block="Get humidity" 
+    export function humidityValue(): number {
         return humidity;
     }
 
@@ -139,7 +139,7 @@ namespace HANSHIN_STEM_SENSORS {
     //% blockId=setPM_T7Model block="Set PM_T7 Model to |mode=%mode active interval time=%activeInterval second"
     //% mode.fieldEditor="gridpicker" mode.fieldOptions.columns=1
     //% activeInterval.min=1 activeInterval.max=9 activeInterval.defl=5
-    export function setPM_T7Model(mode: MODE, activeInterval: number) : void {
+    export function setPMT7Model(mode: MODE, activeInterval: number) : void {
         sensor = 3
         if( mode === MODE.Active ) {
             let modeCmd3= "AT+MODE="+activeInterval
@@ -151,7 +151,7 @@ namespace HANSHIN_STEM_SENSORS {
     }
 
     //% blockId=queryGyroData block="Query gyro data" 
-    export function queryPM_T7Data() : void {
+    export function queryPMT7Data() : void {
         sensor = 3
         serial.writeString("AT+DATA")
     }
@@ -257,13 +257,13 @@ namespace HANSHIN_STEM_SENSORS {
         if (wait) basic.pause(2000)
     }
 
-    //% blockId=getDHT11Humidity block="Get DHT11 humidity" 
-    export function getDHT11Humidity(): number {
+    //% blockId=dHT11Humidity block="Get DHT11 humidity" 
+    export function dHT11Humidity(): number {
         return dht11_humidity;
     }
     
-    //% blockId=getDHT11Temperature block="Get DHT11 temperature" 
-    export function getDHT11Temperature(): number {
+    //% blockId=dHT11Temperature block="Get DHT11 temperature" 
+    export function dHT11Temperature(): number {
         return dht11_temperature;
     }
 
