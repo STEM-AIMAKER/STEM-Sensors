@@ -1,4 +1,3 @@
-//% weight=10 color=#1E90FF icon="\uf136"
 namespace HANSHIN_STEM_SENSORS {
     let buffer = ""
     let sensor=0
@@ -229,7 +228,6 @@ namespace HANSHIN_STEM_SENSORS {
             {
                 pm25 = parseInt(line.substr(0,4))
                 pm10 = parseInt(line.substr(-4,4))
-                basic.showNumber(pm25)
             }
                 break;
             case 4: // SGP30 
