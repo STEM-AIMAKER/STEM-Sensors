@@ -1,3 +1,10 @@
+/*
+    HANSHIN STEM SENSOR 
+    Date: 2020-10
+    Version: 1.0.0
+*/
+
+//% weight=10 color=#1E90FF icon="\uf136"
 namespace HANSHIN_STEM_SENSORS {
     let buffer = ""
     let sensor=0
