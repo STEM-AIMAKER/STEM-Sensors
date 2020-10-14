@@ -1,3 +1,4 @@
+//% block="Hanshin STEM sensors" weight=10 color=#1E90FF icon="\uf136"
 namespace HANSHIN_STEM_SENSORS {
     let buffer = ""
     let sensor=0
