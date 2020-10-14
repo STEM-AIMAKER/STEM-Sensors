@@ -14,7 +14,7 @@ namespace HANSHIN_STEM_SENSORS {
     let temperature=0.0
     let humidity=0.0
 
-    enum MODE {
+    export enum MODE {
         //% blockId="Active" block="Active"
         Active=0,
         //% blockId="Passive" block="Passive"
