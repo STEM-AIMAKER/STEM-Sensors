@@ -8,11 +8,11 @@
 HANSHIN_STEM_SENSORS.initSerial(SerialPin.P16, SerialPin.P8)
 input.onButtonPressed(Button.A, function () {
     //HANSHIN_STEM_SENSORS.setSHT31Model(HANSHIN_STEM_SENSORS.MODE.Active, 3)
-    HANSHIN_STEM_SENSORS.setGyroModel(HANSHIN_STEM_SENSORS.MODE.Active, 5)
+    HANSHIN_STEM_SENSORS.setTOFMode(HANSHIN_STEM_SENSORS.MODE.Active, 3)
 })
 
 basic.forever(function () {
     basic.pause(5000)
     //basic.showNumber(HANSHIN_STEM_SENSORS.getTemperature())  
-    basic.showNumber(HANSHIN_STEM_SENSORS.gyroX())
+    basic.showNumber(HANSHIN_STEM_SENSORS.tofDistanceValue())
 })
