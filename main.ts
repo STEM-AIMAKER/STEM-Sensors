@@ -86,6 +86,11 @@ namespace HANSHIN_STEM_SENSORS {
         return humidity;
     }
 
+    //% blockId=tofDistanceValue block="Get TOF Distance" 
+    export function tofDistanceValue(): number {
+        return tof_distance;
+    }    
+
     //% blockId=initSerial block="Init serial port to |TX = %Tx RX=%RX"
     //% Tx.fieldEditor="gridpicker" Tx.fieldOptions.columns=4
     //% Rx.fieldEditor="gridpicker" Rx.fieldOptions.columns=4
