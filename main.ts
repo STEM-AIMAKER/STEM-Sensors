@@ -1,4 +1,4 @@
-//% block="Hanshin STEM sensors" weight=10 color=#1E90FF icon="\uf136"
+
 namespace HANSHIN_STEM_SENSORS {
     let buffer = ""
     let sensor=0
@@ -17,6 +17,7 @@ namespace HANSHIN_STEM_SENSORS {
     let dht11_humidity = -999.0
     let dht11_temperature = -999.0
     let dht11_readSuccessful = false
+    let tof_distance = 0
     
     export enum MODE {
         //% blockId="Active" block="Active"
@@ -95,6 +96,26 @@ namespace HANSHIN_STEM_SENSORS {
         serial.writeString("AT")
         basic.pause(300)
         serial.readString();
+    }
+
+    //% blockId=setTOFMode block="Set TOF Model to |mode=%mode active interval time=%activeInterval second"
+    //% mode.fieldEditor="gridpicker" mode.fieldOptions.columns=1
+    //% activeInterval.min=1 activeInterval.max=9 activeInterval.defl=5
+    export function setTOFMode(mode: MODE, activeInterval: number) : void {
+        sensor = 6
+        if( mode === MODE.Active ) {
+            let modeCmd= "AT+MODE="+activeInterval
+            serial.writeString(modeCmd)
+        }
+        else {
+            serial.writeString("AT+DATA")
+        }
+    }
+
+    //% blockId=queryTOFData block="Query TOF data(mm)" 
+    export function queryTOFData(): void {
+        sensor = 6
+        serial.writeString("AT+DATA")
     }
 
     //% blockId=setMPU6050Model block="Set MPU6050 Model to |mode=%mode active interval time=%activeInterval second"
@@ -322,6 +343,11 @@ namespace HANSHIN_STEM_SENSORS {
                 //basic.showNumber(temperature)
             }
                 break;
+            case 6: // TOF
+            {
+                tof_distance = parseInt(line)
+            }
+            break;
         }
     })
 }
