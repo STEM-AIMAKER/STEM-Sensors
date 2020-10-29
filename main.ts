@@ -48,7 +48,19 @@ namespace HANSHIN_STEM_SENSORS {
         serial.readString();
     }
 
-        //% block="Query DHT11 Data pin $dataPin|Wait 2 sec after query $wait"
+    //% blockId=dHT11Humidity block="Get DHT11 humidity" 
+    //% group="DHT11"
+    export function dHT11Humidity(): number {
+        return dht11_humidity;
+    }
+    
+    //% blockId=dHT11Temperature block="Get DHT11 temperature" 
+    //% group="DHT11"
+    export function dHT11Temperature(): number {
+        return dht11_temperature;
+    }
+
+    //% block="Query DHT11 Data pin $dataPin|Wait 2 sec after query $wait"
     //% wait.defl=true
     //% group="DHT11"
     export function queryDHT11Data(dataPin: DigitalPin, wait: boolean) 
@@ -110,18 +122,30 @@ namespace HANSHIN_STEM_SENSORS {
         if (wait) basic.pause(2000)
     }
 
-    //% blockId=dHT11Humidity block="Get DHT11 humidity" 
-    //% group="DHT11"
-    export function dHT11Humidity(): number {
-        return dht11_humidity;
-    }
-    
-    //% blockId=dHT11Temperature block="Get DHT11 temperature" 
-    //% group="DHT11"
-    export function dHT11Temperature(): number {
-        return dht11_temperature;
+    //% blockId=gyroZ block="Get Gyro Z" 
+    //% group="Gyroscope+Accelerometer"
+    export function gyroZ() : number {
+        return Gyro_z;
     }
 
+    //% blockId=gyroY block="Get Gyro Y" 
+    //% group="Gyroscope+Accelerometer"
+    export function gyroY() : number {
+        return Gyro_y;
+    }
+
+    //% blockId=gyroX block="Get Gyro X" 
+    //% group="Gyroscope+Accelerometer"
+    export function gyroX() : number {
+        return Gyro_x;
+    }
+    
+    //% blockId=queryGyroData block="Query gyro data" 
+    //% group="Gyroscope+Accelerometer"
+    export function queryGyroData() : void {
+        sensor = 2
+        serial.writeString("AT+GYDATA")
+    }
     //% blockId=setGyroModel block="Set Gyro Model to |mode=%mode active interval time=%activeInterval second at serial TX=%Tx Rx=%Rx"
     //% mode.fieldEditor="gridpicker" mode.fieldOptions.columns=1
     //% activeInterval.min=1 activeInterval.max=9 activeInterval.defl=5
@@ -140,31 +164,30 @@ namespace HANSHIN_STEM_SENSORS {
         }
     }
 
-    //% blockId=queryGyroData block="Query gyro data" 
-    //% group="Gyroscope+Accelerometer"
-    export function queryGyroData() : void {
-        sensor = 2
-        serial.writeString("AT+GYDATA")
+    //% blockId=mpu6050Z block="Get MPU6050 Z" 
+    //% group="MPU6050"
+    export function mpu6050Z() : number {
+        return MPU6050_z;
     }
 
-    //% blockId=gyroX block="Get Gyro X" 
-    //% group="Gyroscope+Accelerometer"
-    export function gyroX() : number {
-        return Gyro_x;
+    //% blockId=mpu6050Y block="Get MPU6050 Y" 
+    //% group="MPU6050"
+    export function mpu6050Y() : number {
+        return MPU6050_y;
     }
 
-    //% blockId=gyroY block="Get Gyro Y" 
-    //% group="Gyroscope+Accelerometer"
-    export function gyroY() : number {
-        return Gyro_y;
+    //% blockId=mpu6050X block="Get MPU6050 X" 
+    //% group="MPU6050"
+    export function mpu6050X() : number {
+        return MPU6050_x;
     }
-
-    //% blockId=gyroZ block="Get Gyro Z" 
-    //% group="Gyroscope+Accelerometer"
-    export function gyroZ() : number {
-        return Gyro_z;
+    
+    //% blockId=queryMPU6050Data block="Query MPU6050 data" 
+    //% group="MPU6050"
+    export function queryMPU6050Data(): void {
+        sensor = 1
+        serial.writeString("AT+SPDATA")
     }
-
 
     //% blockId=setMPU6050Model block="Set MPU6050 Model to |mode=%mode active interval time=%activeInterval second at serial TX=%Tx Rx=%Rx"
     //% mode.fieldEditor="gridpicker" mode.fieldOptions.columns=1
@@ -183,30 +206,24 @@ namespace HANSHIN_STEM_SENSORS {
             serial.writeString("AT+SPDATA")
         }
     }
-
-    //% blockId=queryMPU6050Data block="Query MPU6050 data" 
-    //% group="MPU6050"
-    export function queryMPU6050Data(): void {
-        sensor = 1
-        serial.writeString("AT+SPDATA")
+    
+    //% blockId=pM25 block="Get PM25" 
+    //% group="PM2.5"
+    export function pM25(): number {
+        return pm25;
     }
 
-        //% blockId=mpu6050X block="Get MPU6050 X" 
-    //% group="MPU6050"
-    export function mpu6050X() : number {
-        return MPU6050_x;
+    //% blockId=pM10 block="Get PM10" 
+    //% group="PM2.5"
+    export function pM10(): number {
+        return pm10;
     }
-
-    //% blockId=mpu6050Y block="Get MPU6050 Y" 
-    //% group="MPU6050"
-    export function mpu6050Y() : number {
-        return MPU6050_y;
-    }
-
-    //% blockId=mpu6050Z block="Get MPU6050 Z" 
-    //% group="MPU6050"
-    export function mpu6050Z() : number {
-        return MPU6050_z;
+    
+    //% blockId=queryGyroData block="Query gyro data" 
+    //% group="PM2.5"
+    export function queryPMT7Data() : void {
+        sensor = 3
+        serial.writeString("AT+DATA")
     }
 
     //% blockId=setPM_T7Model block="Set PM_T7 Model to |mode=%mode active interval time=%activeInterval second at serial TX=%Tx Rx=%Rx"
@@ -227,25 +244,24 @@ namespace HANSHIN_STEM_SENSORS {
         }
     }
 
-    //% blockId=queryGyroData block="Query gyro data" 
-    //% group="PM2.5"
-    export function queryPMT7Data() : void {
-        sensor = 3
+    //% blockId=tVOC block="Get TVOC" 
+    //% group="SGP30"
+    export function tVOC(): number {
+        return tvoc;
+    }
+
+    //% blockId=cO2 block="Get CO2" 
+    //% group="SGP30"
+    export function cO2(): number {
+        return co2;
+    }
+
+    //% blockId=querySGP30Data block="Query SGP30 data" 
+    //% group="SGP30"
+    export function querySGP30Data() : void {
+        sensor = 4
         serial.writeString("AT+DATA")
     }
-
-    //% blockId=pM25 block="Get PM25" 
-    //% group="PM2.5"
-    export function pM25(): number {
-        return pm25;
-    }
-
-    //% blockId=pM10 block="Get PM10" 
-    //% group="PM2.5"
-    export function pM10(): number {
-        return pm10;
-    }
-
     //% blockId=setSGP30Model block="Set SGP30 Model to |mode=%mode active interval time=%activeInterval second at serial TX=%Tx Rx=%Rx"
     //% mode.fieldEditor="gridpicker" mode.fieldOptions.columns=1
     //% activeInterval.min=1 activeInterval.max=9 activeInterval.defl=5
@@ -264,23 +280,22 @@ namespace HANSHIN_STEM_SENSORS {
         }
     }
     
-    //% blockId=querySGP30Data block="Query SGP30 data" 
-    //% group="SGP30"
-    export function querySGP30Data() : void {
-        sensor = 4
+    //% blockId=temperatureValue block="Get temperature" 
+    //% group="SHT31X"
+    export function temperatureValue(): number {
+        return temperature;
+    }
+
+    //% blockId=humidityValue block="Get humidity" 
+    //% group="SHT31X"
+    export function humidityValue(): number {
+        return humidity;
+    }
+    //% blockId=querySHT31Data block="Query SHT31X data" 
+    //% group="SHT31X"
+    export function querySHT31Data() : void {
+        sensor = 5
         serial.writeString("AT+DATA")
-    }
-
-    //% blockId=tVOC block="Get TVOC" 
-    //% group="SGP30"
-    export function tVOC(): number {
-        return tvoc;
-    }
-
-    //% blockId=cO2 block="Get CO2" 
-    //% group="SGP30"
-    export function cO2(): number {
-        return co2;
     }
    
     //% blockId=setSHT31XModel block="Set SHT31X Model to |mode=%mode active interval time=%activeInterval second at serial TX=%Tx Rx=%Rx"
@@ -301,23 +316,16 @@ namespace HANSHIN_STEM_SENSORS {
         }
     }
 
-    //% blockId=querySHT31Data block="Query SHT31X data" 
-    //% group="SHT31X"
-    export function querySHT31Data() : void {
-        sensor = 5
+    //% blockId=tofDistanceValue block="Get TOF Distance" 
+    //% group="Time of Flight(TOF)"
+    export function tofDistanceValue(): number {
+        return tof_distance;
+    }    
+    //% blockId=queryTOFData block="Query TOF data(mm)" 
+    //% group="Time of Flight(TOF)"
+    export function queryTOFData(): void {
+        sensor = 6
         serial.writeString("AT+DATA")
-    }
-
-    //% blockId=temperatureValue block="Get temperature" 
-    //% group="SHT31X"
-    export function temperatureValue(): number {
-        return temperature;
-    }
-
-    //% blockId=humidityValue block="Get humidity" 
-    //% group="SHT31X"
-    export function humidityValue(): number {
-        return humidity;
     }
 
     //% blockId=setTOFMode block="Set TOF Model to |mode=%mode active interval time=%activeInterval second at serial TX=%Tx Rx=%Rx"
@@ -338,19 +346,6 @@ namespace HANSHIN_STEM_SENSORS {
             serial.writeString("AT+DATA")
         }
     }
-
-    //% blockId=queryTOFData block="Query TOF data(mm)" 
-    //% group="Time of Flight(TOF)"
-    export function queryTOFData(): void {
-        sensor = 6
-        serial.writeString("AT+DATA")
-    }
-
-    //% blockId=tofDistanceValue block="Get TOF Distance" 
-    //% group="Time of Flight(TOF)"
-    export function tofDistanceValue(): number {
-        return tof_distance;
-    }    
 
     let line = ""
     serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function () {
