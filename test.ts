@@ -5,10 +5,9 @@
 //})
 
 // test SHT3X
-HANSHIN_STEM_SENSORS.initSerial(SerialPin.P16, SerialPin.P8)
 input.onButtonPressed(Button.A, function () {
     //HANSHIN_STEM_SENSORS.setSHT31Model(HANSHIN_STEM_SENSORS.MODE.Active, 3)
-    HANSHIN_STEM_SENSORS.setTOFMode(HANSHIN_STEM_SENSORS.MODE.Active, 3)
+    //HANSHIN_STEM_SENSORS.setTOFMode(HANSHIN_STEM_SENSORS.MODE.Active, 3)
 })
 
 basic.forever(function () {
