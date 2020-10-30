@@ -1,7 +1,7 @@
 /**
  * Hanshin STEM Sensors
  */
-//% color=190 weight=100 icon="\uf1ec" block="Hanshin STEM Sensors"
+//% color=190 weight=100 icon="\uf1ec" block="HANSHIN: UART Sensors"
 //% groups=['DHT11', 'Gyroscope+Accelerometer','MPU6050', 'PM2.5','SGP30','SHT31X','Time of Flight(TOF)','others']
 namespace HANSHIN_STEM_SENSORS {
 /**
