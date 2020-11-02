@@ -155,6 +155,7 @@ namespace HANSHIN_STEM_SENSORS {
     //% blockExternalInputs=true
     export function setGyroModel(mode: MODE, activeInterval: number,Tx: SerialPin, Rx: SerialPin) : void {
         sensor = 2
+        initSerial(Tx,Rx)
         if( mode === MODE.Active ) {
             let modeCmd22= "AT+GYMODE="+activeInterval
             serial.writeString(modeCmd22)
@@ -198,6 +199,7 @@ namespace HANSHIN_STEM_SENSORS {
     //% blockExternalInputs=true
     export function setMPU6050Model(mode: MODE, activeInterval: number,Tx: SerialPin, Rx: SerialPin) : void {
         sensor = 1
+        initSerial(Tx,Rx)
         if( mode === MODE.Active ) {
             let modeCmd2= "AT+SPMODE="+activeInterval
             serial.writeString(modeCmd2)
@@ -235,6 +237,7 @@ namespace HANSHIN_STEM_SENSORS {
     //% blockExternalInputs=true
     export function setPMT7Model(mode: MODE, activeInterval: number,Tx: SerialPin, Rx: SerialPin) : void {
         sensor = 3
+        initSerial(Tx,Rx)
         if( mode === MODE.Active ) {
             let modeCmd3= "AT+MODE="+activeInterval
             serial.writeString(modeCmd3)
@@ -271,6 +274,7 @@ namespace HANSHIN_STEM_SENSORS {
     //% blockExternalInputs=true
     export function setSGP30Model(mode: MODE, activeInterval: number,Tx: SerialPin, Rx: SerialPin) : void {
         sensor = 4
+        initSerial(Tx,Rx)
         if( mode === MODE.Active ) {
             let modeCmd4= "AT+MODE="+activeInterval
             serial.writeString(modeCmd4)
@@ -307,6 +311,7 @@ namespace HANSHIN_STEM_SENSORS {
     //% blockExternalInputs=true
     export function setSHTX31Model(mode: MODE, activeInterval: number,Tx: SerialPin, Rx: SerialPin) : void {
         sensor = 5
+        initSerial(Tx,Rx)
         if( mode === MODE.Active ) {
             let modeCmd5= "AT+MODE="+activeInterval
             serial.writeString(modeCmd5)
