@@ -2,18 +2,15 @@
  * Hanshin STEM Sensors
  */
 //% color=190 weight=100 icon="\uf1ec" block="HANSHIN: UART Sensors"
-//% groups=['DHT11', 'Gyroscope+Accelerometer','MPU6050', 'PM2.5','SGP30','SHT31X','Time of Flight(TOF)','others']
+//% groups=['DHT11', 'Gyroscope+Accelerometer', 'PM2.5','SGP30','SHT31X','Time of Flight(TOF)','others']
 namespace HANSHIN_STEM_SENSORS {
 /**
  * Hanshin STEM Sensors
  */
 // color=190 weight=100 icon="\uf1ec" block="Hanshin STEM Sensors"
-// groups=['DHT11', 'Gyroscope+Accelerometer','MPU6050', 'PM2.5',SGP30','SHT31X','Time of Flight(TOF)','others']
+// groups=['DHT11', 'Gyroscope+Accelerometer', 'PM2.5',SGP30','SHT31X','Time of Flight(TOF)','others']
     let buffer = ""
     let sensor=0
-    let MPU6050_x=0
-    let MPU6050_y=0
-    let MPU6050_z=0
     let Gyro_x=0
     let Gyro_y=0
     let Gyro_z=0
@@ -161,50 +158,6 @@ namespace HANSHIN_STEM_SENSORS {
         }
         else {
             serial.writeString("AT+GYDATA")
-        }
-    }
-
-    //% blockId=mpu6050Z block="Get MPU6050 Z" 
-    //% group="MPU6050"
-    export function mpu6050Z() : number {
-        return MPU6050_z;
-    }
-
-    //% blockId=mpu6050Y block="Get MPU6050 Y" 
-    //% group="MPU6050"
-    export function mpu6050Y() : number {
-        return MPU6050_y;
-    }
-
-    //% blockId=mpu6050X block="Get MPU6050 X" 
-    //% group="MPU6050"
-    export function mpu6050X() : number {
-        return MPU6050_x;
-    }
-    
-    //% blockId=queryMPU6050Data block="Query MPU6050 data" 
-    //% group="MPU6050"
-    export function queryMPU6050Data(): void {
-        sensor = 1
-        serial.writeString("AT+SPDATA")
-    }
-
-    //% blockId=setMPU6050Model block="Set MPU6050 Model to |mode=%mode active interval time=%activeInterval second at serial TX=%Tx Rx=%Rx"
-    //% mode.fieldEditor="gridpicker" mode.fieldOptions.columns=1
-    //% activeInterval.min=1 activeInterval.max=9 activeInterval.defl=5
-    //% group="MPU6050"
-    //% Tx.fieldEditor="gridpicker" Tx.fieldOptions.columns=4
-    //% Rx.fieldEditor="gridpicker" Rx.fieldOptions.columns=4
-    //% blockExternalInputs=true
-    export function setMPU6050Model(mode: MODE, activeInterval: number,Tx: SerialPin, Rx: SerialPin) : void {
-        sensor = 1
-        initSerial(Tx,Rx)
-        if( mode === MODE.Active ) {
-            let modeCmd2= "AT+SPMODE="+activeInterval
-            serial.writeString(modeCmd2)
-        }
-        else {
-            serial.writeString("AT+SPDATA")
         }
     }
     
