@@ -312,15 +312,6 @@ namespace HANSHIN_STEM_SENSORS {
                 break;
             case 1: // MPU6050
             {
-                MPU6050_x= parseInt(line.substr(1,5))
-                if( line.substr(0,1) === "-")
-                    MPU6050_x *= -1
-                MPU6050_y= parseInt(line.substr(7,5))
-                if( line.substr(6,1) === "-")
-                    MPU6050_y *= -1
-                MPU6050_z= parseInt(line.substr(13,5))
-                if( line.substr(12,1) === "-")
-                    MPU6050_z *= -1
             }
                 break;
             case 2: // Gyro
