@@ -5,9 +5,9 @@
 //% groups=['DHT11', '6-Axis Inertial Measurement Unit', 'Air Quality','TVOC','High Precision Temperature and Humidity','Laser Distance','others']
 namespace HANSHIN_STEM_SENSORS {
 /**
- * Hanshin STEM Sensors
+ * AIMaker STEM Sensors
  */
-// color=190 weight=100 icon="\uf1ec" block="Hanshin STEM Sensors"
+// color=190 weight=100 icon="\uf1ec" block="AIMaker: UART Sensors"
 // groups=['DHT11', 'Gyroscope+Accelerometer', 'PM2.5',SGP30','SHT31X','Time of Flight(TOF)','others']
     let buffer = ""
     let sensor=0
