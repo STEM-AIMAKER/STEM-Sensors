@@ -278,7 +278,7 @@ namespace HANSHIN_STEM_SENSORS {
     export function tofDistanceValue(): number {
         return tof_distance;
     }    
-    //% blockId=queryTOFData block="Read TOF data(mm)" 
+    //% blockId=queryTOFData block="GET TOF data(mm)" 
     //% group="Laser Distance"
     export function queryTOFData(): void {
         sensor = 6
