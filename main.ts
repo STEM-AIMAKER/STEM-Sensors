@@ -3,7 +3,7 @@
  */
 //% color=190 weight=100 icon="\uf1ec" block="AIMaker: UART Sensors"
 //% groups=['High Precision Temperature and Humidity Sensor', '6-Axis Inertial Measurement Unit', 'Air Quality','TVOC','Temperature and Humidity','Laser Distance','others']
-namespace aimakeruartsensors {
+namespace HANSHIN_STEM_SENSORS  {
 /**
  * AIMaker STEM Sensors
  */
