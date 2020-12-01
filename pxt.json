@@ -1,5 +1,5 @@
 {
-    "name": "aimakeruartsensors",
+    "name": "stem-sensors",
     "version": "1.0.10",
     "description": "UART sensor for hanshin sensors",
     "dependencies": {
