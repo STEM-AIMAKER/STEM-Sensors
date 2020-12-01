@@ -2,13 +2,13 @@
  * AIMaker STEM Sensors
  */
 //% color=190 weight=100 icon="\uf1ec" block="AIMaker: UART Sensors"
-//% groups=['DHT11', '6-Axis Inertial Measurement Unit', 'Air Quality','TVOC','High Precision Temperature and Humidity','Laser Distance','others']
-namespace HANSHIN_STEM_SENSORS {
+//% groups=['High Precision Temperature and Humidity Sensor', '6-Axis Inertial Measurement Unit', 'Air Quality','TVOC','Temperature and Humidity','Laser Distance','others']
+namespace aimakeruartsensors {
 /**
  * AIMaker STEM Sensors
  */
 // color=190 weight=100 icon="\uf1ec" block="AIMaker: UART Sensors"
-// groups=['DHT11', '6-Axis Inertial Measurement Unit', 'Air Quality','TVOC','High Precision Temperature and Humidity','Laser Distance','others']
+// groups=['High Precision Temperature and Humidity Sensor', '6-Axis Inertial Measurement Unit', 'Air Quality','TVOC','Temperature and Humidity','Laser Distance','others']
     let buffer = ""
     let sensor=0
     let Gyro_x=0
@@ -44,21 +44,21 @@ namespace HANSHIN_STEM_SENSORS {
         serial.readString();
     }
 
-    //% blockId=dHT11Humidity block="Get DHT11 humidity" 
-    //% group="DHT11"
+    //% blockId=dHT11Humidity block="Get humidity" 
+    //% group="High Precision Temperature and Humidity Sensor"
     export function dHT11Humidity(): number {
         return dht11_humidity;
     }
     
-    //% blockId=dHT11Temperature block="Get DHT11 temperature" 
-    //% group="DHT11"
+    //% blockId=dHT11Temperature block="Get temperature" 
+    //% group="High Precision Temperature and Humidity Sensor"
     export function dHT11Temperature(): number {
         return dht11_temperature;
     }
 
-    //% block="Query DHT11 Data pin $dataPin|Wait 2 sec after query $wait"
+    //% block="Read Data pin $dataPin|Wait 2 sec after query $wait"
     //% wait.defl=true
-    //% group="DHT11"
+    //% group="High Precision Temperature and Humidity Sensor"
     export function queryDHT11Data(dataPin: DigitalPin, wait: boolean) 
     {
         //initialize
@@ -136,7 +136,7 @@ namespace HANSHIN_STEM_SENSORS {
         return Gyro_x;
     }
     
-    //% blockId=queryGyroData block="Query gyro data" 
+    //% blockId=queryGyroData block="Read gyro data" 
     //% group="6-Axis Inertial Measurement Unit"
     export function queryGyroData() : void {
         sensor = 2
@@ -173,7 +173,7 @@ namespace HANSHIN_STEM_SENSORS {
         return pm10;
     }
     
-    //% blockId=queryGyroData block="Query gyro data" 
+    //% blockId=queryGyroData block="Read gyro data" 
     //% group="Air Quality"
     export function queryPMT7Data() : void {
         sensor = 3
@@ -211,7 +211,7 @@ namespace HANSHIN_STEM_SENSORS {
         return co2;
     }
 
-    //% blockId=querySGP30Data block="Query SGP30 data" 
+    //% blockId=querySGP30Data block="Read SGP30 data" 
     //% group="TVOC"
     export function querySGP30Data() : void {
         sensor = 4
@@ -237,18 +237,18 @@ namespace HANSHIN_STEM_SENSORS {
     }
     
     //% blockId=temperatureValue block="Get temperature" 
-    //% group="High Precision Temperature and Humidity"
+    //% group="Temperature and Humidity"
     export function temperatureValue(): number {
         return temperature;
     }
 
     //% blockId=humidityValue block="Get humidity" 
-    //% group="High Precision Temperature and Humidity"
+    //% group="Temperature and Humidity"
     export function humidityValue(): number {
         return humidity;
     }
-    //% blockId=querySHT31Data block="Query SHT31X data" 
-    //% group="High Precision Temperature and Humidity"
+    //% blockId=querySHT31Data block="Read SHT31X data" 
+    //% group="Temperature and Humidity"
     export function querySHT31Data() : void {
         sensor = 5
         serial.writeString("AT+DATA")
@@ -278,7 +278,9 @@ namespace HANSHIN_STEM_SENSORS {
     export function tofDistanceValue(): number {
         return tof_distance;
     }    
-    //% blockId=queryTOFData block="Query TOF data(mm)" 
+    //% blockId=queryTOFData block="Read
+    
+    TOF data(mm)" 
     //% group="Laser Distance"
     export function queryTOFData(): void {
         sensor = 6
