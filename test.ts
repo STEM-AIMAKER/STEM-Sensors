@@ -13,5 +13,5 @@ input.onButtonPressed(Button.A, function () {
 basic.forever(function () {
     basic.pause(5000)
     //basic.showNumber(HANSHIN_STEM_SENSORS.getTemperature())  
-    basic.showNumber(HANSHIN_STEM_SENSORS.tofDistanceValue())
+    basic.showNumber(aimakeruartsensors.tofDistanceValue())
 })
