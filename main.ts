@@ -2,13 +2,13 @@
  * AIMaker STEM Sensors
  */
 //% color=190 weight=100 icon="\uf1ec" block="AIMaker: UART Sensors"
-//% groups=['High Precision Temperature and Humidity Sensor', '6-Axis Inertial Measurement Unit', 'Air Quality','TVOC','Temperature and Humidity','Laser Distance','others']
+//% groups=['High Precision Temperature and Humidity Sensor', '6-Axis Inertial Measurement Unit', 'Air Quality','TVOC','Temperature and Humidity Sensor','Laser Distance','others']
 namespace HANSHIN_STEM_SENSORS {
 /**
  * AIMaker STEM Sensors
  */
 // color=190 weight=100 icon="\uf1ec" block="AIMaker: UART Sensors"
-// groups=['High Precision Temperature and Humidity Sensor', '6-Axis Inertial Measurement Unit', 'Air Quality','TVOC','Temperature and Humidity','Laser Distance','others']
+// groups=['High Precision Temperature and Humidity Sensor', '6-Axis Inertial Measurement Unit', 'Air Quality','TVOC','Temperature and Humidity Sensor','Laser Distance','others']
     let buffer = ""
     let sensor=0
     let Gyro_x=0
@@ -237,18 +237,18 @@ namespace HANSHIN_STEM_SENSORS {
     }
     
     //% blockId=temperatureValue block="Get temperature" 
-    //% group="Temperature and Humidity"
+    //% group="Temperature and Humidity Sensor"
     export function temperatureValue(): number {
         return temperature;
     }
 
     //% blockId=humidityValue block="Get humidity" 
-    //% group="Temperature and Humidity"
+    //% group="Temperature and Humidity Sensor"
     export function humidityValue(): number {
         return humidity;
     }
     //% blockId=querySHT31Data block="Read SHT31X data" 
-    //% group="Temperature and Humidity"
+    //% group="Temperature and Humidity Sensor"
     export function querySHT31Data() : void {
         sensor = 5
         serial.writeString("AT+DATA")
@@ -257,7 +257,7 @@ namespace HANSHIN_STEM_SENSORS {
     //% blockId=setSHT31XModel block="Set SHT31X Model to |mode=%mode active interval time=%activeInterval second at serial TX=%Tx Rx=%Rx"
     //% mode.fieldEditor="gridpicker" mode.fieldOptions.columns=1
     //% activeInterval.min=1 activeInterval.max=9 activeInterval.defl=5
-    //% group="High Precision Temperature and Humidity"
+    //% group="Temperature and Humidity Sensor"
     //% Tx.fieldEditor="gridpicker" Tx.fieldOptions.columns=4
     //% Rx.fieldEditor="gridpicker" Rx.fieldOptions.columns=4
     //% blockExternalInputs=true
