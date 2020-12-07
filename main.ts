@@ -2,13 +2,13 @@
  * AIMaker STEM Sensors
  */
 //% color=190 weight=100 icon="\uf1ec" block="AIMaker: UART Sensors"
-//% groups=['High Precision Temperature and Humidity Sensor', '6-Axis Inertial Measurement Unit', 'Air Quality','TVOC','Temperature and Humidity Sensor','Laser Distance','others']
+//% groups=['High Precision Temperature and Humidity Sensor', '6-Axis Inertial Measurement Unit', 'Air Quality','TVOC','Temperature and Humidity Sensor','Laser Distance Sensor','others']
 namespace HANSHIN_STEM_SENSORS {
 /**
  * AIMaker STEM Sensors
  */
 // color=190 weight=100 icon="\uf1ec" block="AIMaker: UART Sensors"
-// groups=['High Precision Temperature and Humidity Sensor', '6-Axis Inertial Measurement Unit', 'Air Quality','TVOC','Temperature and Humidity Sensor','Laser Distance','others']
+// groups=['High Precision Temperature and Humidity Sensor', '6-Axis Inertial Measurement Unit', 'Air Quality','TVOC','Temperature and Humidity Sensor','Laser Distance Sensor','others']
     let buffer = ""
     let sensor=0
     let Gyro_x=0
@@ -274,12 +274,12 @@ namespace HANSHIN_STEM_SENSORS {
     }
 
     //% blockId=tofDistanceValue block="Get TOF Distance" 
-    //% group="Laser Distance"
+    //% group="Laser Distance Sensor"
     export function tofDistanceValue(): number {
         return tof_distance;
     }    
     //% blockId=queryTOFData block="Read TOF data(mm)" 
-    //% group="Laser Distance"
+    //% group="Laser Distance Sensor"
     export function queryTOFData(): void {
         sensor = 6
         serial.writeString("AT+DATA")
@@ -290,7 +290,7 @@ namespace HANSHIN_STEM_SENSORS {
     //% activeInterval.min=1 activeInterval.max=9 activeInterval.defl=5
     //% Tx.fieldEditor="gridpicker" Tx.fieldOptions.columns=4
     //% Rx.fieldEditor="gridpicker" Rx.fieldOptions.columns=4
-    //% group="Laser Distance"
+    //% group="Laser Distance Sensor"
     //% blockExternalInputs=true
     export function setTOFMode(mode: MODE, activeInterval: number,Tx: SerialPin, Rx: SerialPin) : void {
         sensor = 6
