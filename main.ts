@@ -39,7 +39,7 @@ namespace HANSHIN_STEM_SENSORS {
         serial.redirect(Tx, Rx, 9600)
         buffer = serial.readString()
         basic.pause(100)
-        serial.writeString("AT")
+        serial.writeString("CM")
         basic.pause(300)
         serial.readString();
     }
@@ -140,7 +140,7 @@ namespace HANSHIN_STEM_SENSORS {
     //% group="6-Axis Inertial Measurement Unit"
     export function queryGyroData() : void {
         sensor = 2
-        serial.writeString("AT+GYD08U")
+        serial.writeString("CM+GYD08U")
     }
     //% blockId=setGyroModel block="Set Gyro Model to |mode=%mode active interval time=%activeInterval second at serial TX=%Tx Rx=%Rx"
     //% mode.fieldEditor="gridpicker" mode.fieldOptions.columns=1
@@ -153,11 +153,11 @@ namespace HANSHIN_STEM_SENSORS {
         sensor = 2
         initSerial(Tx,Rx)
         if( mode === MODE.Active ) {
-            let modeCmd22= "AT+GYD08U="+activeInterval
+            let modeCmd22= "CM+GYD08U="+activeInterval
             serial.writeString(modeCmd22)
         }
         else {
-            serial.writeString("AT+GYD08U")
+            serial.writeString("CM+GYD08U")
         }
     }
     
@@ -177,7 +177,7 @@ namespace HANSHIN_STEM_SENSORS {
     //% group="Air Quality"
     export function queryPMT7Data() : void {
         sensor = 3
-        serial.writeString("AT+D11U")
+        serial.writeString("CM+D11U")
     }
 
     //% blockId=setPM_T7Model block="Set PM_T7 Model to |mode=%mode active interval time=%activeInterval second at serial TX=%Tx Rx=%Rx"
@@ -191,11 +191,11 @@ namespace HANSHIN_STEM_SENSORS {
         sensor = 3
         initSerial(Tx,Rx)
         if( mode === MODE.Active ) {
-            let modeCmd3= "AT+D11U="+activeInterval
+            let modeCmd3= "CM+D11U="+activeInterval
             serial.writeString(modeCmd3)
         }
         else {
-            serial.writeString("AT+D11U")
+            serial.writeString("CM+D11U")
         }
     }
 
@@ -215,7 +215,7 @@ namespace HANSHIN_STEM_SENSORS {
     //% group="TVOC"
     export function querySGP30Data() : void {
         sensor = 4
-        serial.writeString("AT+D10U")
+        serial.writeString("CM+D10U")
     }
     //% blockId=setSGP30Model block="Set SGP30 Model to |mode=%mode active interval time=%activeInterval second at serial TX=%Tx Rx=%Rx"
     //% mode.fieldEditor="gridpicker" mode.fieldOptions.columns=1
@@ -228,11 +228,11 @@ namespace HANSHIN_STEM_SENSORS {
         sensor = 4
         initSerial(Tx,Rx)
         if( mode === MODE.Active ) {
-            let modeCmd4= "AT+D10U="+activeInterval
+            let modeCmd4= "CM+D10U="+activeInterval
             serial.writeString(modeCmd4)
         }
         else {
-            serial.writeString("AT+D10U")
+            serial.writeString("CM+D10U")
         }
     }
     
@@ -255,7 +255,7 @@ namespace HANSHIN_STEM_SENSORS {
     //% group="Temperature and Humidity Sensor"
     export function querySHTX31Data() : void {
         sensor = 5
-        serial.writeString("AT+D09U")
+        serial.writeString("CM+D09U")
     }
    
     //% blockId=setSHT31XModel block="Set SHT31X Model to |mode=%mode active interval time=%activeInterval second at serial TX=%Tx Rx=%Rx"
@@ -269,11 +269,11 @@ namespace HANSHIN_STEM_SENSORS {
         sensor = 5
         initSerial(Tx,Rx)
         if( mode === MODE.Active ) {
-            let modeCmd5= "AT+D09U="+activeInterval
+            let modeCmd5= "CM+D09U="+activeInterval
             serial.writeString(modeCmd5)
         }
         else {
-            serial.writeString("AT+D09U")
+            serial.writeString("CM+D09U")
         }
     }
 
@@ -286,7 +286,7 @@ namespace HANSHIN_STEM_SENSORS {
     //% group="Laser Distance Sensor"
     export function queryTOFData(): void {
         sensor = 6
-        serial.writeString("AT+D12U")
+        serial.writeString("CM+D12U")
     }
 
     //% blockId=setTOFMode block="Set TOF Model to |mode=%mode active interval time=%activeInterval second at serial TX=%Tx Rx=%Rx"
@@ -300,11 +300,11 @@ namespace HANSHIN_STEM_SENSORS {
         sensor = 6
         initSerial(Tx,Rx)
         if( mode === MODE.Active ) {
-            let modeCmd= "AT+D12U="+activeInterval
+            let modeCmd= "CM+D12U="+activeInterval
             serial.writeString(modeCmd)
         }
         else {
-            serial.writeString("AT+D12U")
+            serial.writeString("CM+D12U")
         }
     }
 
@@ -319,7 +319,7 @@ namespace HANSHIN_STEM_SENSORS {
     //% group="MLX90614"
     export function queryMLX90614Data(): void {
         sensor = 7
-        serial.writeString("AT+D05U")
+        serial.writeString("CM+D05U")
     }
 
     //% blockId=setMLX90614Mode block="Set MLX90614 Model to |mode=%mode active interval time=%activeInterval second at serial TX=%Tx Rx=%Rx"
@@ -333,11 +333,11 @@ namespace HANSHIN_STEM_SENSORS {
         sensor = 7
         initSerial(Tx,Rx)
         if( mode === MODE.Active ) {
-            let modeCmd= "AT+D05U="+activeInterval
+            let modeCmd= "CM+D05U="+activeInterval
             serial.writeString(modeCmd)
         }
         else {
-            serial.writeString("AT+D05U")
+            serial.writeString("CM+D05U")
         }
     }
 
