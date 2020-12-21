@@ -44,13 +44,13 @@ namespace HANSHIN_STEM_SENSORS {
         serial.readString();
     }
 
-    //% blockId=dHT11Humidity block="Get humidity" 
+    //% blockId=dHT11Humidity block="Humidity" 
     //% group="High Precision Temperature and Humidity Sensor"
     export function dHT11Humidity(): number {
         return dht11_humidity;
     }
     
-    //% blockId=dHT11Temperature block="Get temperature" 
+    //% blockId=dHT11Temperature block="Temperature" 
     //% group="High Precision Temperature and Humidity Sensor"
     export function dHT11Temperature(): number {
         return dht11_temperature;
@@ -118,19 +118,19 @@ namespace HANSHIN_STEM_SENSORS {
         if (wait) basic.pause(2000)
     }
 
-    //% blockId=gyroZ block="Get Gyro Z" 
+    //% blockId=gyroZ block="Gyro Z" 
     //% group="6-Axis Inertial Measurement Unit"
     export function gyroZ() : number {
         return Gyro_z;
     }
 
-    //% blockId=gyroY block="Get Gyro Y" 
+    //% blockId=gyroY block="Gyro Y" 
     //% group="6-Axis Inertial Measurement Unit"
     export function gyroY() : number {
         return Gyro_y;
     }
 
-    //% blockId=gyroX block="Get Gyro X" 
+    //% blockId=gyroX block="Gyro X" 
     //% group="6-Axis Inertial Measurement Unit"
     export function gyroX() : number {
         return Gyro_x;
@@ -161,13 +161,13 @@ namespace HANSHIN_STEM_SENSORS {
         }
     }
     
-    //% blockId=pM25 block="Get PM25" 
+    //% blockId=pM25 block="PM25" 
     //% group="Air Quality"
     export function pM25(): number {
         return pm25;
     }
 
-    //% blockId=pM10 block="Get PM10" 
+    //% blockId=pM10 block="PM10" 
     //% group="Air Quality"
     export function pM10(): number {
         return pm10;
@@ -199,13 +199,13 @@ namespace HANSHIN_STEM_SENSORS {
         }
     }
 
-    //% blockId=tVOC block="Get TVOC" 
+    //% blockId=tVOC block="TVOC" 
     //% group="TVOC"
     export function tVOC(): number {
         return tvoc;
     }
 
-    //% blockId=cO2 block="Get CO2" 
+    //% blockId=cO2 block="CO2" 
     //% group="TVOC"
     export function cO2(): number {
         return co2;
@@ -242,7 +242,7 @@ namespace HANSHIN_STEM_SENSORS {
         return temperature;
     }
 
-    //% blockId=humidityValue block="Get humidity" 
+    //% blockId=humidityValue block="humidity" 
     //% group="Temperature and Humidity Sensor"
     export function humidityValue(): number {
         return humidity;
@@ -277,7 +277,7 @@ namespace HANSHIN_STEM_SENSORS {
         }
     }
 
-    //% blockId=tofDistanceValue block="Get TOF Distance" 
+    //% blockId=tofDistanceValue block="TOF Distance" 
     //% group="Laser Distance Sensor"
     export function tofDistanceValue(): number {
         return tof_distance;
@@ -309,7 +309,7 @@ namespace HANSHIN_STEM_SENSORS {
     }
 
     let mlxTempture = 0
-    //% blockId=mlx90614Temperature block="Get temperature" 
+    //% blockId=mlx90614Temperature block="Temperature" 
     //% group="MLX90614"
     export function mlx90614Temperature(): number {
         return mlxTempture;
