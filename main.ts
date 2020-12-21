@@ -344,7 +344,31 @@ namespace HANSHIN_STEM_SENSORS {
 
     let line = ""
     serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function () {
-        line = serial.readLine()       
+        line = serial.readLine()  
+        let h0 = line.substr(0,1)
+        if( h0 == "A" )
+        {
+            sensor=1
+        } else if( h0 == "B" )
+        {
+            sensor=2
+        } else if( h0== "C" )
+        {
+            sensor=3
+        }else if( h0== "D" )
+        {
+            sensor=4
+        }else if( h0== "E" )
+        {
+            sensor=5
+        }else if( h0== "F" )
+        {
+            sensor=7
+        }else if( h0== "G" )
+        {
+            sensor=6
+        }
+        
         switch( sensor ) {
             default:
                 break;
