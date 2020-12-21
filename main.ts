@@ -75,7 +75,7 @@ namespace HANSHIN_STEM_SENSORS {
         dht11_readSuccessful = false
 
         startTime = input.runningTimeMicros()
-0
+
         //request data
         pins.digitalWritePin(dataPin, 0) //begin protocol
         basic.pause(18)
@@ -348,27 +348,36 @@ namespace HANSHIN_STEM_SENSORS {
         let h0 = line.substr(0,1)
         if( h0 == "A" )
         {
-            sensor=1
+            if( line.length == 19 ) {
+                sensor=1
+                line = line.substr(1)
+            }
         } else if( h0 == "B" )
         {
             sensor=2
+            line = line.substr(1)
         } else if( h0== "C" )
         {
             sensor=3
+            line = line.substr(1)
         }else if( h0== "D" )
         {
             sensor=4
+            line = line.substr(1)
         }else if( h0== "E" )
         {
             sensor=5
+            line = line.substr(1)
         }else if( h0== "F" )
         {
             sensor=7
+            line = line.substr(1)
         }else if( h0== "G" )
         {
             sensor=6
+            line = line.substr(1)
         }
-        
+
         switch( sensor ) {
             default:
                 break;
