@@ -2,13 +2,13 @@
  * AIMaker STEM Sensors
  */
 //% color=190 weight=100 icon="\uf1ec" block="AIMaker: UART Sensors"
-//% groups=['High Precision Temperature and Humidity Sensor', '6-Axis Inertial Measurement Unit', 'Air Quality','TVOC','Temperature and Humidity Sensor','Laser Distance Sensor','IR Thermometer','others']
+//% groups=['High Precision Temperature and Humidity Sensor', '6-Axis Inertial Measurement Unit', 'Air Quality','TVOC','Temperature and Humidity Sensor','Laser Distance Sensor','Body Temperature Sensor','others']
 namespace HANSHIN_STEM_SENSORS {
 /**
  * AIMaker STEM Sensors
  */
 // color=190 weight=100 icon="\uf1ec" block="AIMaker: UART Sensors"
-// groups=['High Precision Temperature and Humidity Sensor', '6-Axis Inertial Measurement Unit', 'Air Quality','TVOC','Temperature and Humidity Sensor','Laser Distance Sensor','IR Thermometer','others']
+// groups=['High Precision Temperature and Humidity Sensor', '6-Axis Inertial Measurement Unit', 'Air Quality','TVOC','Temperature and Humidity Sensor','Laser Distance Sensor','Body Temperature Sensor','others']
     let buffer = ""
     let sensor=0
     let Gyro_x=0
@@ -310,24 +310,24 @@ namespace HANSHIN_STEM_SENSORS {
 
     let mlxTempture = 0
     //% blockId=mlx90614Temperature block="Temperature" 
-    //% group="IR Thermometer"
+    //% group="Body Temperature Sensor"
     export function mlx90614Temperature(): number {
         return mlxTempture;
     }
 
-    //% blockId=queryMLX90614Data block="Read MLX90614 temperature" 
-    //% group="IR Thermometer"
+    //% blockId=queryMLX90614Data block="Read temperature" 
+    //% group="Body Temperature Sensor"
     export function queryMLX90614Data(): void {
         sensor = 7
         serial.writeString("CM+D05U")
     }
 
-    //% blockId=setMLX90614Mode block="Set MLX90614 Model to |mode=%mode active interval time=%activeInterval second at serial TX=%Tx Rx=%Rx"
+    //% blockId=setMLX90614Mode block="Set sensor Model to |mode=%mode active interval time=%activeInterval second at serial TX=%Tx Rx=%Rx"
     //% mode.fieldEditor="gridpicker" mode.fieldOptions.columns=1
     //% activeInterval.min=1 activeInterval.max=9 activeInterval.defl=5
     //% Tx.fieldEditor="gridpicker" Tx.fieldOptions.columns=4
     //% Rx.fieldEditor="gridpicker" Rx.fieldOptions.columns=4
-    //% group="IR Thermometer"
+    //% group="Body Temperature Sensor"
     //% blockExternalInputs=true
     export function setMLX90614Mode(mode: MODE, activeInterval: number,Tx: SerialPin, Rx: SerialPin) : void {
         sensor = 7
