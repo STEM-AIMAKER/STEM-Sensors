@@ -2,13 +2,13 @@
  * AIMaker STEM Sensors
  */
 //% color=190 weight=100 icon="\uf1ec" block="AIMaker: UART Sensors"
-//% groups=['High Precision Temperature and Humidity Sensor', '6-Axis Inertial Measurement Unit', 'Air Quality','TVOC','Temperature and Humidity Sensor','Laser Distance Sensor','Body Temperature Sensor','others']
+//% groups=['High Precision Temperature and Humidity Sensor', '6-Axis Inertial Measurement Unit', 'Air Quality Sensor','TVOC','Temperature and Humidity Sensor','Laser Distance Sensor','Body Temperature Sensor','others']
 namespace HANSHIN_STEM_SENSORS {
 /**
  * AIMaker STEM Sensors
  */
 // color=190 weight=100 icon="\uf1ec" block="AIMaker: UART Sensors"
-// groups=['High Precision Temperature and Humidity Sensor', '6-Axis Inertial Measurement Unit', 'Air Quality','TVOC','Temperature and Humidity Sensor','Laser Distance Sensor','Body Temperature Sensor','others']
+// groups=['High Precision Temperature and Humidity Sensor', '6-Axis Inertial Measurement Unit', 'Air Quality Sensor','TVOC','Temperature and Humidity Sensor','Laser Distance Sensor','Body Temperature Sensor','others']
     let buffer = ""
     let sensor=0
     let Gyro_x=0
@@ -161,20 +161,20 @@ namespace HANSHIN_STEM_SENSORS {
         }
     }
     
-    //% blockId=pM25 block="PM25" 
-    //% group="Air Quality"
+    //% blockId=pM25 block="PM2.5" 
+    //% group="Air Quality Sensor"
     export function pM25(): number {
         return pm25;
     }
 
     //% blockId=pM10 block="PM10" 
-    //% group="Air Quality"
+    //% group="Air Quality Sensor"
     export function pM10(): number {
         return pm10;
     }
     
-    //% blockId=queryGyroData block="Read gyro data" 
-    //% group="Air Quality"
+    //% blockId=queryGyroData block="Read air quality data" 
+    //% group="Air Quality Sensor"
     export function queryPMT7Data() : void {
         sensor = 3
         serial.writeString("CM+D11U")
@@ -183,7 +183,7 @@ namespace HANSHIN_STEM_SENSORS {
     //% blockId=setPM_T7Model block="Set PM_T7 Model to |mode=%mode active interval time=%activeInterval second at serial TX=%Tx Rx=%Rx"
     //% mode.fieldEditor="gridpicker" mode.fieldOptions.columns=1
     //% activeInterval.min=1 activeInterval.max=9 activeInterval.defl=5
-    //% group="Air Quality"
+    //% group="Air Quality Sensor"
     //% Tx.fieldEditor="gridpicker" Tx.fieldOptions.columns=4
     //% Rx.fieldEditor="gridpicker" Rx.fieldOptions.columns=4
     //% blockExternalInputs=true
