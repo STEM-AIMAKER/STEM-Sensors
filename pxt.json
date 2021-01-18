@@ -1,6 +1,6 @@
 {
     "name": "stem-sensors",
-    "version": "1.0.19",
+    "version": "1.0.20",
     "description": "UART sensor for hanshin sensors",
     "dependencies": {
         "core": "*",
