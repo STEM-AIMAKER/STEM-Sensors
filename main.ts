@@ -396,6 +396,14 @@ namespace HANSHIN_STEM_SENSORS {
                 Gyro_z= parseInt(line.substr(13,5))
                 if( line.substr(12,1) === "-")
                     Gyro_z *= -1
+                
+                Gyro_x = 1000 * Gyro_x / 32768
+                Gyro_y = 1000 * Gyro_y / 32768
+                Gyro_z = 1000 * Gyro_z / 32768
+                
+                Gyro_x = Math.floor(100*Gyro_x) / 100
+                Gyro_y = Math.floor(100*Gyro_y) / 100
+                Gyro_z = Math.floor(100*Gyro_z) / 100                
             }
                 break;
             case 3: // PM_T7
