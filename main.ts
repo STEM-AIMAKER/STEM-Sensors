@@ -283,13 +283,13 @@ namespace HANSHIN_STEM_SENSORS {
         }
     }
     
-    //% blockId=temperatureValue block="Get temperature" 
+    //% blockId=temperatureValue block="Temperature" 
     //% group="High Precision Temperature and Humidity Sensor"
     export function temperatureValue(): number {
         return temperature;
     }
 
-    //% blockId=humidityValue block="Get humidity" 
+    //% blockId=humidityValue block="Humidity" 
     //% group="High Precision Temperature and Humidity Sensor"
     export function humidityValue(): number {
         return humidity;
