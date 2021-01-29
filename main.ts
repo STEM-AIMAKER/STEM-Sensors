@@ -48,20 +48,20 @@ namespace HANSHIN_STEM_SENSORS {
     }
 
     //% blockId=dHT11Humidity block="Humidity" 
-    //% group="Temperature and Humidity Sensor"
+    //% group="(change to digital extension)Temperature and Humidity Sensor"
     export function dHT11Humidity(): number {
         return dht11_humidity;
     }
     
     //% blockId=dHT11Temperature block="Temperature" 
-    //% group="Temperature and Humidity Sensor"
+    //% group="(change to digital extension)Temperature and Humidity Sensor"
     export function dHT11Temperature(): number {
         return dht11_temperature;
     }
 
     //% block="Read Data pin $dataPin|Wait 2 sec after query $wait"
     //% wait.defl=true
-    //% group="Temperature and Humidity Sensor"
+    //% group="(change to digital extension)Temperature and Humidity Sensor"
     export function queryDHT11Data(dataPin: DigitalPin, wait: boolean) 
     {
         //initialize
