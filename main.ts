@@ -2,7 +2,7 @@
  * AIMaker STEM Sensors
  */
 //% color=190 weight=100 icon="\uf1ec" block="AIMaker: UART Sensors"
-//% groups=['High Precision Temperature and Humidity Sensor', 'Gyroscope+Accelerometer', 'Air Quality Sensor','TVOC','Temperature and Humidity Sensor','Laser Distance Sensor','Body Temperature Sensor','others']
+//% groups=['Gyroscope+Accelerometer', 'Air Quality Sensor','TVOC','High Precision Temperature and Humidity Sensor','Laser Distance Sensor','Body Temperature Sensor','others']
 namespace HANSHIN_STEM_SENSORS {
 /**
  * AIMaker STEM Sensors
@@ -48,20 +48,20 @@ namespace HANSHIN_STEM_SENSORS {
     }
 
     //% blockId=dHT11Humidity block="Humidity" 
-    //% group="High Precision Temperature and Humidity Sensor"
+    //% group="Temperature and Humidity Sensor"
     export function dHT11Humidity(): number {
         return dht11_humidity;
     }
     
     //% blockId=dHT11Temperature block="Temperature" 
-    //% group="High Precision Temperature and Humidity Sensor"
+    //% group="Temperature and Humidity Sensor"
     export function dHT11Temperature(): number {
         return dht11_temperature;
     }
 
     //% block="Read Data pin $dataPin|Wait 2 sec after query $wait"
     //% wait.defl=true
-    //% group="High Precision Temperature and Humidity Sensor"
+    //% group="Temperature and Humidity Sensor"
     export function queryDHT11Data(dataPin: DigitalPin, wait: boolean) 
     {
         //initialize
@@ -284,13 +284,13 @@ namespace HANSHIN_STEM_SENSORS {
     }
     
     //% blockId=temperatureValue block="Get temperature" 
-    //% group="Temperature and Humidity Sensor"
+    //% group="High Precision Temperature and Humidity Sensor"
     export function temperatureValue(): number {
         return temperature;
     }
 
-    //% blockId=humidityValue block="humidity" 
-    //% group="Temperature and Humidity Sensor"
+    //% blockId=humidityValue block="Get humidity" 
+    //% group="High Precision Temperature and Humidity Sensor"
     export function humidityValue(): number {
         return humidity;
     }
@@ -299,7 +299,7 @@ namespace HANSHIN_STEM_SENSORS {
 
 
     //% blockId=querySHTX31Data block="Read SHT31X data" 
-    //% group="Temperature and Humidity Sensor"
+    //% group="High Precision Temperature and Humidity Sensor"
     export function querySHTX31Data() : void {
         sensor = 5
         serial.writeString("CM+D09U")
@@ -308,7 +308,7 @@ namespace HANSHIN_STEM_SENSORS {
     //% blockId=setSHT31XModel block="Set SHT31X Model to |mode=%mode active interval time=%activeInterval second at serial TX=%Tx Rx=%Rx"
     //% mode.fieldEditor="gridpicker" mode.fieldOptions.columns=1
     //% activeInterval.min=1 activeInterval.max=9 activeInterval.defl=5
-    //% group="Temperature and Humidity Sensor"
+    //% group="High Precision Temperature and Humidity Sensor"
     //% Tx.fieldEditor="gridpicker" Tx.fieldOptions.columns=4
     //% Rx.fieldEditor="gridpicker" Rx.fieldOptions.columns=4
     //% blockExternalInputs=true
