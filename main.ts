@@ -8,7 +8,7 @@ namespace HANSHIN_STEM_SENSORS {
  * AIMaker STEM Sensors
  */
 // color=190 weight=100 icon="\uf1ec" block="AIMaker: UART Sensors"
-// groups=['High Precision Temperature and Humidity Sensor', '6-Axis Inertial Measurement Unit', 'Air Quality Sensor','TVOC','Temperature and Humidity Sensor','Laser Distance Sensor','Body Temperature Sensor','others']
+// groups=['6-Axis Inertial Measurement Unit', 'Air Quality Sensor','TVOC','High Precision Temperature and Humidity Sensor','Laser Distance Sensor','Body Temperature Sensor','others']
     let buffer = ""
     let sensor=0
     let acc_x = 0
