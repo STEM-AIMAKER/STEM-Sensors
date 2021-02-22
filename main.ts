@@ -23,9 +23,9 @@ namespace HANSHIN_STEM_SENSORS {
     let co2=0
     let temperature=0.0
     let humidity=0.0
-    let dht11_humidity = -999.0
-    let dht11_temperature = -999.0
-    let dht11_readSuccessful = false
+//     let dht11_humidity = -999.0
+//     let dht11_temperature = -999.0
+//     let dht11_readSuccessful = false
     let tof_distance = 0
     
     export enum MODE {
@@ -47,79 +47,79 @@ namespace HANSHIN_STEM_SENSORS {
         serial.readString();
     }
 
-    //% blockId=dHT11Humidity block="Humidity" 
-    //% group="Temperature and Humidity Sensor"
-    export function dHT11Humidity(): number {
-        return dht11_humidity;
-    }
+//     //% blockId=dHT11Humidity block="Humidity" 
+//     //% group="Temperature and Humidity Sensor"
+//     export function dHT11Humidity(): number {
+//         return dht11_humidity;
+//     }
     
-    //% blockId=dHT11Temperature block="Temperature" 
-    //% group="Temperature and Humidity Sensor"
-    export function dHT11Temperature(): number {
-        return dht11_temperature;
-    }
+//     //% blockId=dHT11Temperature block="Temperature" 
+//     //% group="Temperature and Humidity Sensor"
+//     export function dHT11Temperature(): number {
+//         return dht11_temperature;
+//     }
 
-    //% block="Read Data pin $dataPin|Wait 2 sec after query $wait"
-    //% wait.defl=true
-    //% group="Temperature and Humidity Sensor"
-    export function queryDHT11Data(dataPin: DigitalPin, wait: boolean) 
-    {
-        //initialize
-        let startTime: number = 0
-        let endTime: number = 0
-        let checksum: number = 0
-        let checksumTmp: number = 0
-        let dataArray: boolean[] = []
-        let resultArray: number[] = []
-        for (let index = 0; index < 40; index++) dataArray.push(false)
-        for (let index2 = 0; index2 < 5; index2++) resultArray.push(0)
-        dht11_humidity = -999.0
-        dht11_temperature = -999.0
-        dht11_readSuccessful = false
+//     //% block="Read Data pin $dataPin|Wait 2 sec after query $wait"
+//     //% wait.defl=true
+//     //% group="Temperature and Humidity Sensor"
+//     export function queryDHT11Data(dataPin: DigitalPin, wait: boolean) 
+//     {
+//         //initialize
+//         let startTime: number = 0
+//         let endTime: number = 0
+//         let checksum: number = 0
+//         let checksumTmp: number = 0
+//         let dataArray: boolean[] = []
+//         let resultArray: number[] = []
+//         for (let index = 0; index < 40; index++) dataArray.push(false)
+//         for (let index2 = 0; index2 < 5; index2++) resultArray.push(0)
+//         dht11_humidity = -999.0
+//         dht11_temperature = -999.0
+//         dht11_readSuccessful = false
 
-        startTime = input.runningTimeMicros()
+//         startTime = input.runningTimeMicros()
 
-        //request data
-        pins.digitalWritePin(dataPin, 0) //begin protocol
-        basic.pause(18)
-       // pins.setPull(dataPin, PinPullMode.PullUp)
-        pins.digitalReadPin(dataPin)
-        control.waitMicros(20)
-        while (pins.digitalReadPin(dataPin) == 1);
-        while (pins.digitalReadPin(dataPin) == 0); //sensor response
-        while (pins.digitalReadPin(dataPin) == 1); //sensor response
+//         //request data
+//         pins.digitalWritePin(dataPin, 0) //begin protocol
+//         basic.pause(18)
+//        // pins.setPull(dataPin, PinPullMode.PullUp)
+//         pins.digitalReadPin(dataPin)
+//         control.waitMicros(20)
+//         while (pins.digitalReadPin(dataPin) == 1);
+//         while (pins.digitalReadPin(dataPin) == 0); //sensor response
+//         while (pins.digitalReadPin(dataPin) == 1); //sensor response
 
-        //read data (5 bytes)
-        for (let index3 = 0; index3 < 40; index3++) {
-            while (pins.digitalReadPin(dataPin) == 1);
-            while (pins.digitalReadPin(dataPin) == 0);
-            control.waitMicros(28)
-            //if sensor pull up data pin for more than 28 us it means 1, otherwise 0
-            if (pins.digitalReadPin(dataPin) == 1) dataArray[index3] = true
-        }
+//         //read data (5 bytes)
+//         for (let index3 = 0; index3 < 40; index3++) {
+//             while (pins.digitalReadPin(dataPin) == 1);
+//             while (pins.digitalReadPin(dataPin) == 0);
+//             control.waitMicros(28)
+//             //if sensor pull up data pin for more than 28 us it means 1, otherwise 0
+//             if (pins.digitalReadPin(dataPin) == 1) dataArray[index3] = true
+//         }
 
-        endTime = input.runningTimeMicros()
+//         endTime = input.runningTimeMicros()
 
-        //convert byte number array to integer
-        for (let index4 = 0; index4 < 5; index4++)
-            for (let index22 = 0; index22 < 8; index22++)
-                if (dataArray[8 * index4 + index22]) resultArray[index4] += 2 ** (7 - index22)
+//         //convert byte number array to integer
+//         for (let index4 = 0; index4 < 5; index4++)
+//             for (let index22 = 0; index22 < 8; index22++)
+//                 if (dataArray[8 * index4 + index22]) resultArray[index4] += 2 ** (7 - index22)
 
-        //verify checksum
-        checksumTmp = resultArray[0] + resultArray[1] + resultArray[2] + resultArray[3]
-        checksum = resultArray[4]
-        if (checksumTmp >= 512) checksumTmp -= 512
-        if (checksumTmp >= 256) checksumTmp -= 256
-        if (checksum == checksumTmp) dht11_readSuccessful = true
+//         //verify checksum
+//         checksumTmp = resultArray[0] + resultArray[1] + resultArray[2] + resultArray[3]
+//         checksum = resultArray[4]
+//         if (checksumTmp >= 512) checksumTmp -= 512
+//         if (checksumTmp >= 256) checksumTmp -= 256
+//         if (checksum == checksumTmp) dht11_readSuccessful = true
 
-        //read data if checksum ok
-        if (dht11_readSuccessful) {
-            dht11_humidity = resultArray[0] + resultArray[1] / 100
-            dht11_temperature = resultArray[2] + resultArray[3] / 100
-        }
-        //wait 2 sec after query if needed
-        if (wait) basic.pause(2000)
-    }
+//         //read data if checksum ok
+//         if (dht11_readSuccessful) {
+//             dht11_humidity = resultArray[0] + resultArray[1] / 100
+//             dht11_temperature = resultArray[2] + resultArray[3] / 100
+//         }
+//         //wait 2 sec after query if needed
+//         if (wait) basic.pause(2000)
+//     }
 
     //% blockId=gyroZ block="Gyro Z" 
     //% group="Gyroscope+Accelerometer"
