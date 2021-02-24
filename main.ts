@@ -2,13 +2,13 @@
  * AIMaker STEM Sensors
  */
 //% color=190 weight=100 icon="\uf1ec" block="AIMaker: UART Sensors"
-//% groups=['Gyroscope+Accelerometer', 'PM2.5 Module','TVOC','High Precision Temperature and Humidity Sensor','Laser Distance Sensor','Body Temperature Sensor','others']
+//% groups=['Gyroscope+Accelerometer', 'PM2.5 Module','SGP30 TVOC Module','SHT3X','Time Of Flight(ToF)','IR Thermometer Sensor','others']
 namespace HANSHIN_STEM_SENSORS {
 /**
  * AIMaker STEM Sensors
  */
 // color=190 weight=100 icon="\uf1ec" block="AIMaker: UART Sensors"
-// groups=['Gyroscope+Accelerometer', 'PM2.5 Module','TVOC','High Precision Temperature and Humidity Sensor','Laser Distance Sensor','Body Temperature Sensor','others']
+// groups=['Gyroscope+Accelerometer', 'PM2.5 Module','SGP30 TVOC Module','SHT3X','Time Of Flight(ToF)','IR Thermometer Sensor','others']
     let buffer = ""
     let sensor=0
     let acc_x = 0
@@ -247,19 +247,19 @@ namespace HANSHIN_STEM_SENSORS {
     }
 
     //% blockId=tVOC block="TVOC" 
-    //% group="TVOC"
+    //% group="SGP30 TVOC Module"
     export function tVOC(): number {
         return tvoc;
     }
 
     //% blockId=cO2 block="CO2" 
-    //% group="TVOC"
+    //% group="SGP30 TVOC Module"
     export function cO2(): number {
         return co2;
     }
 
     //% blockId=querySGP30Data block="Read SGP30 data" 
-    //% group="TVOC"
+    //% group="SGP30 TVOC Module"
     export function querySGP30Data() : void {
         sensor = 4
         serial.writeString("CM+D10U")
@@ -267,7 +267,7 @@ namespace HANSHIN_STEM_SENSORS {
     //% blockId=setSGP30Model block="Set SGP30 Model to |mode=%mode active interval time=%activeInterval second at serial TX=%Tx Rx=%Rx"
     //% mode.fieldEditor="gridpicker" mode.fieldOptions.columns=1
     //% activeInterval.min=1 activeInterval.max=9 activeInterval.defl=5
-    //% group="TVOC"
+    //% group="SGP30 TVOC Module"
     //% Tx.fieldEditor="gridpicker" Tx.fieldOptions.columns=4
     //% Rx.fieldEditor="gridpicker" Rx.fieldOptions.columns=4
     //% blockExternalInputs=true
@@ -284,13 +284,13 @@ namespace HANSHIN_STEM_SENSORS {
     }
     
     //% blockId=temperatureValue block="Temperature" 
-    //% group="High Precision Temperature and Humidity Sensor"
+    //% group="SHT3X"
     export function temperatureValue(): number {
         return temperature;
     }
 
     //% blockId=humidityValue block="Humidity" 
-    //% group="High Precision Temperature and Humidity Sensor"
+    //% group="SHT3X"
     export function humidityValue(): number {
         return humidity;
     }
@@ -299,7 +299,7 @@ namespace HANSHIN_STEM_SENSORS {
 
 
     //% blockId=querySHTX31Data block="Read SHT31X data" 
-    //% group="High Precision Temperature and Humidity Sensor"
+    //% group="SHT3X"
     export function querySHTX31Data() : void {
         sensor = 5
         serial.writeString("CM+D09U")
@@ -308,7 +308,7 @@ namespace HANSHIN_STEM_SENSORS {
     //% blockId=setSHT31XModel block="Set SHT31X Model to |mode=%mode active interval time=%activeInterval second at serial TX=%Tx Rx=%Rx"
     //% mode.fieldEditor="gridpicker" mode.fieldOptions.columns=1
     //% activeInterval.min=1 activeInterval.max=9 activeInterval.defl=5
-    //% group="High Precision Temperature and Humidity Sensor"
+    //% group="SHT3X"
     //% Tx.fieldEditor="gridpicker" Tx.fieldOptions.columns=4
     //% Rx.fieldEditor="gridpicker" Rx.fieldOptions.columns=4
     //% blockExternalInputs=true
@@ -325,12 +325,12 @@ namespace HANSHIN_STEM_SENSORS {
     }
 
     //% blockId=tofDistanceValue block="TOF Distance" 
-    //% group="Laser Distance Sensor"
+    //% group="Time Of Flight(ToF)"
     export function tofDistanceValue(): number {
         return tof_distance;
     }    
     //% blockId=queryTOFData block="Read TOF data(mm)" 
-    //% group="Laser Distance Sensor"
+    //% group="Time Of Flight(ToF)"
     export function queryTOFData(): void {
         sensor = 6
         serial.writeString("CM+D12U")
@@ -341,7 +341,7 @@ namespace HANSHIN_STEM_SENSORS {
     //% activeInterval.min=1 activeInterval.max=9 activeInterval.defl=5
     //% Tx.fieldEditor="gridpicker" Tx.fieldOptions.columns=4
     //% Rx.fieldEditor="gridpicker" Rx.fieldOptions.columns=4
-    //% group="Laser Distance Sensor"
+    //% group="Time Of Flight(ToF)"
     //% blockExternalInputs=true
     export function setTOFMode(mode: MODE, activeInterval: number,Tx: SerialPin, Rx: SerialPin) : void {
         sensor = 6
@@ -357,13 +357,13 @@ namespace HANSHIN_STEM_SENSORS {
 
     let mlxTempture = 0
     //% blockId=mlx90614Temperature block="Temperature" 
-    //% group="Body Temperature Sensor"
+    //% group="IR Thermometer Sensor"
     export function mlx90614Temperature(): number {
         return mlxTempture;
     }
 
     //% blockId=queryMLX90614Data block="Read temperature" 
-    //% group="Body Temperature Sensor"
+    //% group="IR Thermometer Sensor"
     export function queryMLX90614Data(): void {
         sensor = 7
         serial.writeString("CM+D05U")
@@ -374,7 +374,7 @@ namespace HANSHIN_STEM_SENSORS {
     //% activeInterval.min=1 activeInterval.max=9 activeInterval.defl=5
     //% Tx.fieldEditor="gridpicker" Tx.fieldOptions.columns=4
     //% Rx.fieldEditor="gridpicker" Rx.fieldOptions.columns=4
-    //% group="Body Temperature Sensor"
+    //% group="IR Thermometer Sensor"
     //% blockExternalInputs=true
     export function setMLX90614Mode(mode: MODE, activeInterval: number,Tx: SerialPin, Rx: SerialPin) : void {
         sensor = 7
