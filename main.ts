@@ -11,12 +11,9 @@ namespace HANSHIN_STEM_SENSORS {
 // groups=['6-Axis Inertial Measurement Unit', 'Air Quality Sensor','TVOC Sensor','High Precision Temperature and Humidity Sensor','Laser Distance Sensor','Body Temperature Sensor','others']
     let buffer = ""
     let sensor=0
-    let acc_x = 0
-    let acc_y = 0
-    let acc_z = 0
-    let Gyro_x=0
-    let Gyro_y=0
-    let Gyro_z=0
+    let angle_x = 0.0
+    let angle_y = 0.0
+    let angle_z = 0.0
     let pm25=0
     let pm10=0
     let tvoc=0
@@ -121,29 +118,29 @@ namespace HANSHIN_STEM_SENSORS {
 //         if (wait) basic.pause(2000)
 //     }
 
-    //% blockId=gyroZ block="Gyro Z" 
+    //% blockId=yawZ block="Yaw" 
     //% group="6-Axis Inertial Measurement Unit"
-    export function gyroZ() : number {
-        return Gyro_z;
+    export function yawZ() : number {
+        return angle_z;
     }
 
-    //% blockId=gyroY block="Gyro Y" 
+    //% blockId=rollY block="Roll" 
     //% group="6-Axis Inertial Measurement Unit"
-    export function gyroY() : number {
-        return Gyro_y;
+    export function rollY() : number {
+        return angle_y;
     }
 
-    //% blockId=gyroX block="Gyro X" 
+    //% blockId=pitchX block="Pitch" 
     //% group="6-Axis Inertial Measurement Unit"
-    export function gyroX() : number {
-        return Gyro_x;
+    export function pitchX() : number {
+        return angle_x;
     }
     
     //% blockId=queryGyroData block="Read gyro data" 
     //% group="6-Axis Inertial Measurement Unit"
     export function queryGyroData() : void {
         sensor = 2
-        serial.writeString("CM+GYD08U")
+        serial.writeString("CM+D08U")
     }
     //% blockId=setGyroModel block="Set Gyro Model to |mode=%mode active interval time=%activeInterval second at serial TX=%Tx Rx=%Rx"
     //% mode.fieldEditor="gridpicker" mode.fieldOptions.columns=1
@@ -156,58 +153,14 @@ namespace HANSHIN_STEM_SENSORS {
         sensor = 2
         initSerial(Tx,Rx)
         if( mode === MODE.Active ) {
-            let modeCmd22= "CM+GYD08U="+activeInterval
+            let modeCmd22= "CM+D08U="+activeInterval
             serial.writeString(modeCmd22)
         }
         else {
-            serial.writeString("CM+GYD08U")
+            serial.writeString("CM+D08U")
         }
     }
-    
-    //% blockId=accZ block="Accelerometer Z" 
-    //% group="6-Axis Inertial Measurement Unit"
-    export function accZ() : number {
-        return acc_z;
-    }
-
-    //% blockId=accY block="Accelerometer Y" 
-    //% group="6-Axis Inertial Measurement Unit"
-    export function accY() : number {
-        return acc_y;
-    }
-
-    //% blockId=accX block="Accelerometer X" 
-    //% group="6-Axis Inertial Measurement Unit"
-    export function accX() : number {
-        return acc_x;
-    }
-    
-    //% blockId=queryAccelerometerData block="Read Accelerometer data" 
-    //% group="6-Axis Inertial Measurement Unit"
-    export function queryAccelerometerData() : void {
-        sensor = 1
-        serial.writeString("CM+SPD08U")
-    }
-
-    //% blockId=setAccelerometerModel block="Set Accelerometer Model to |mode=%mode active interval time=%activeInterval second at serial TX=%Tx Rx=%Rx"
-    //% mode.fieldEditor="gridpicker" mode.fieldOptions.columns=1
-    //% activeInterval.min=1 activeInterval.max=9 activeInterval.defl=5
-    //% group="6-Axis Inertial Measurement Unit"
-    //% Tx.fieldEditor="gridpicker" Tx.fieldOptions.columns=4
-    //% Rx.fieldEditor="gridpicker" Rx.fieldOptions.columns=4
-    //% blockExternalInputs=true
-    export function setAccelerometerModel(mode: MODE, activeInterval: number,Tx: SerialPin, Rx: SerialPin) : void {
-        sensor = 1
-        initSerial(Tx,Rx)
-        if( mode === MODE.Active ) {
-            let modeCmd22= "CM+SPD08U="+activeInterval
-            serial.writeString(modeCmd22)
-        }
-        else {
-            serial.writeString("CM+SPD08U")
-        }
-    }
-
+   
     //% blockId=pM25 block="PM2.5" 
     //% group="Air Quality Sensor"
     export function pM25(): number {
@@ -395,10 +348,8 @@ namespace HANSHIN_STEM_SENSORS {
         let h0 = line.substr(0,1)
         if( h0 == "A" )
         {
-            if( line.length == 19 ) {
-                sensor=1
-                line = line.substr(1)
-            }
+            sensor=2
+            line = line.substr(1)
         } else if( h0 == "B" )
         {
             sensor=2
@@ -430,45 +381,56 @@ namespace HANSHIN_STEM_SENSORS {
                 break;
             case 1: // MPU6050
             {
-                acc_x= parseInt(line.substr(1,5))
-                if( line.substr(0,1) === "-")
-                    acc_x *= -1
-                acc_y= parseInt(line.substr(7,5))
-                if( line.substr(6,1) === "-")
-                    acc_y *= -1
-                acc_z= parseInt(line.substr(13,5))
-                if( line.substr(12,1) === "-")
-                    acc_z *= -1
+                // acc_x= parseInt(line.substr(1,5))
+                // if( line.substr(0,1) === "-")
+                //     acc_x *= -1
+                // acc_y= parseInt(line.substr(7,5))
+                // if( line.substr(6,1) === "-")
+                //     acc_y *= -1
+                // acc_z= parseInt(line.substr(13,5))
+                // if( line.substr(12,1) === "-")
+                //     acc_z *= -1
 
-                let g = 9.8
-                acc_x = 2*g * acc_x / 32768
-                acc_y = 2*g * acc_y / 32768
-                acc_z = 2*g * acc_z / 32768
+                // let g = 9.8
+                // acc_x = 2*g * acc_x / 32768
+                // acc_y = 2*g * acc_y / 32768
+                // acc_z = 2*g * acc_z / 32768
 
-                acc_x = Math.floor(1000*acc_x) / 1000
-                acc_y = Math.floor(1000*acc_y) / 1000
-                acc_z = Math.floor(1000*acc_z) / 1000  
+                // acc_x = Math.floor(1000*acc_x) / 1000
+                // acc_y = Math.floor(1000*acc_y) / 1000
+                // acc_z = Math.floor(1000*acc_z) / 1000  
             }
                 break;
             case 2: // Gyro
             {
-                Gyro_x= parseInt(line.substr(1,5))
+                angle_x = parseFloat(line.substr(1,4))
                 if( line.substr(0,1) === "-")
-                    Gyro_x *= -1
-                Gyro_y= parseInt(line.substr(7,5))
-                if( line.substr(6,1) === "-")
-                    Gyro_y *= -1
-                Gyro_z= parseInt(line.substr(13,5))
-                if( line.substr(12,1) === "-")
-                    Gyro_z *= -1
+                    angle_x *= -1
+                    
+                angle_y = parseFloat(line.substr(6,5))
+                if( line.substr(5,1) === "-")
+                    angle_y *= -1
+
+                angle_z = parseFloat(line.substr(12,5))
+                if( line.substr(11,1) === "-")
+                    angle_z *= -1
+                // Gyro_x= parseInt(line.substr(1,5))
+                // if( line.substr(0,1) === "-")
+                //     Gyro_x *= -1
+                // Gyro_y= parseInt(line.substr(7,5))
+                // if( line.substr(6,1) === "-")
+                //     Gyro_y *= -1
+                // Gyro_z= parseInt(line.substr(13,5))
+                // if( line.substr(12,1) === "-")
+                //     Gyro_z *= -1
                 
-                Gyro_x = 1000 * Gyro_x / 32768
-                Gyro_y = 1000 * Gyro_y / 32768
-                Gyro_z = 1000 * Gyro_z / 32768
+                // Gyro_x = 1000 * Gyro_x / 32768
+                // Gyro_y = 1000 * Gyro_y / 32768
+                // Gyro_z = 1000 * Gyro_z / 32768
                 
-                Gyro_x = Math.floor(100*Gyro_x) / 100
-                Gyro_y = Math.floor(100*Gyro_y) / 100
-                Gyro_z = Math.floor(100*Gyro_z) / 100                
+                // Gyro_x = Math.floor(100*Gyro_x) / 100
+                // Gyro_y = Math.floor(100*Gyro_y) / 100
+                // Gyro_z = Math.floor(100*Gyro_z) / 100                
             }
                 break;
             case 3: // PM_T7
