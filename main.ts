@@ -141,6 +141,7 @@ namespace HANSHIN_STEM_SENSORS {
     export function queryGyroData() : void {
         sensor = 2
         serial.writeString("CM+D08U")
+        basic.pause(100)
     }
     //% blockId=setGyroModel block="Set Gyro Model to |mode=%mode active interval time=%activeInterval second at serial TX=%Tx Rx=%Rx"
     //% mode.fieldEditor="gridpicker" mode.fieldOptions.columns=1
@@ -159,6 +160,7 @@ namespace HANSHIN_STEM_SENSORS {
         else {
             serial.writeString("CM+D08U")
         }
+        basic.pause(100)
     }
    
     //% blockId=pM25 block="PM2.5" 
@@ -178,6 +180,7 @@ namespace HANSHIN_STEM_SENSORS {
     export function queryPMT7Data() : void {
         sensor = 3
         serial.writeString("CM+D11U")
+        basic.pause(100)
     }
 
     //% blockId=setPM_T7Model block="Set PM_T7 Model to |mode=%mode active interval time=%activeInterval second at serial TX=%Tx Rx=%Rx"
@@ -197,6 +200,7 @@ namespace HANSHIN_STEM_SENSORS {
         else {
             serial.writeString("CM+D11U")
         }
+        basic.pause(100)
     }
 
     //% blockId=tVOC block="TVOC" 
@@ -216,6 +220,7 @@ namespace HANSHIN_STEM_SENSORS {
     export function querySGP30Data() : void {
         sensor = 4
         serial.writeString("CM+D10U")
+        basic.pause(100)
     }
     //% blockId=setSGP30Model block="Set SGP30 Model to |mode=%mode active interval time=%activeInterval second at serial TX=%Tx Rx=%Rx"
     //% mode.fieldEditor="gridpicker" mode.fieldOptions.columns=1
@@ -234,6 +239,7 @@ namespace HANSHIN_STEM_SENSORS {
         else {
             serial.writeString("CM+D10U")
         }
+        basic.pause(100)
     }
     
     //% blockId=temperatureValue block="Temperature" 
@@ -256,6 +262,7 @@ namespace HANSHIN_STEM_SENSORS {
     export function querySHTX31Data() : void {
         sensor = 5
         serial.writeString("CM+D09U")
+        basic.pause(100)
     }
    
     //% blockId=setSHT31XModel block="Set SHT31X Model to |mode=%mode active interval time=%activeInterval second at serial TX=%Tx Rx=%Rx"
@@ -275,6 +282,7 @@ namespace HANSHIN_STEM_SENSORS {
         else {
             serial.writeString("CM+D09U")
         }
+        basic.pause(100)
     }
 
     //% blockId=tofDistanceValue block="Distance" 
@@ -287,6 +295,7 @@ namespace HANSHIN_STEM_SENSORS {
     export function queryTOFData(): void {
         sensor = 6
         serial.writeString("CM+D12U")
+        basic.pause(100)
     }
 
     //% blockId=setTOFMode block="Set laser distance sensor Model to |mode=%mode active interval time=%activeInterval second at serial TX=%Tx Rx=%Rx"
@@ -306,6 +315,7 @@ namespace HANSHIN_STEM_SENSORS {
         else {
             serial.writeString("CM+D12U")
         }
+        basic.pause(100)
     }
 
     let mlxTempture = 0
@@ -320,6 +330,7 @@ namespace HANSHIN_STEM_SENSORS {
     export function queryMLX90614Data(): void {
         sensor = 7
         serial.writeString("CM+D05U")
+        basic.pause(100)
     }
 
     //% blockId=setMLX90614Mode block="Set sensor Model to |mode=%mode active interval time=%activeInterval second at serial TX=%Tx Rx=%Rx"
@@ -339,6 +350,7 @@ namespace HANSHIN_STEM_SENSORS {
         else {
             serial.writeString("CM+D05U")
         }
+        basic.pause(100)
     }
 
 
