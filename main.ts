@@ -278,6 +278,8 @@ namespace HANSHIN_STEM_SENSORS {
         if( mode === MODE.Active ) {
             let modeCmd5= "CM+D09U="+activeInterval
             serial.writeString(modeCmd5)
+            basic.pause(150)
+            serial.writeString(modeCmd5)
         }
         else {
             serial.writeString("CM+D09U")
