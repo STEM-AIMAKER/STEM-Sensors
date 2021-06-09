@@ -136,7 +136,7 @@ namespace HANSHIN_STEM_SENSORS {
         return angle_x;
     }
     
-    //% blockId=queryGyroData block="Read gyro data" 
+    //% blockId=queryGyroData block="Read Air Quality data" 
     //% group="6-Axis Inertial Measurement Unit"
     export function queryGyroData() : void {
         sensor = 2
