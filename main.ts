@@ -384,10 +384,13 @@ namespace HANSHIN_STEM_SENSORS {
         basic.pause(100)
     }
 
-    let line = ""
     serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function () {
-        line = serial.readLine() 
-        serial.writeString(line)
+        let line = serial.readLine() 
+        serial.writeString("read:"+line)
+        return ;
+
+        if( line.length <= 1 )
+            return ;
         let h0 = line.substr(0,1)
         sensor = 100
         if( h0 == "A" )
