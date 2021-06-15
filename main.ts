@@ -355,7 +355,9 @@ namespace HANSHIN_STEM_SENSORS {
         basic.pause(100)
     }
 
-    //% blockId=setWifiInfo block="Connect to WIFI, |SSID=%name Password=%password"
+    //% blockId=setWifiInfo block="Connect to WIFI, |SSID=%name Password=%password at serial TX=%Tx Rx=%Rx"
+    //% Tx.fieldEditor="gridpicker" Tx.fieldOptions.columns=4
+    //% Rx.fieldEditor="gridpicker" Rx.fieldOptions.columns=4
     //% group="IOT"
     export function setWifiInfo(name: string, password: string,Tx: SerialPin, Rx: SerialPin): void {
         initSerial(Tx,Rx)
