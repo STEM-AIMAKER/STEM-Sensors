@@ -422,7 +422,7 @@ namespace HANSHIN_STEM_SENSORS {
         {
             sensor=7
             line = line.substr(1)
-        }else if( h0== "G" && line.length == 6 )
+        }else if( h0== "G" && line.length == 5 )
         {
             sensor=6
             line = line.substr(1)
