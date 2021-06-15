@@ -357,7 +357,8 @@ namespace HANSHIN_STEM_SENSORS {
 
     //% blockId=setWifiInfo block="Connect to WIFI, |SSID=%name Password=%password"
     //% group="IOT"
-    export function setWifiInfo(name: string, password: string): void {
+    export function setWifiInfo(name: string, password: string,Tx: SerialPin, Rx: SerialPin): void {
+        initSerial(Tx,Rx)
         serial.writeString("AT+CWMODE=3")
         basic.pause(200)        
         let cmd = "AT+CWJAP=\"" + name + "\",\"" + password + "\""
