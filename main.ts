@@ -2,7 +2,7 @@
  * AIMaker STEM Sensors
  */
 //% color=190 weight=100 icon="\uf1ec" block="AIMaker: UART Sensors"
-//% groups=['6-Axis Inertial Measurement Unit', 'Air Quality Sensor','TVOC Sensor','High Precision Temperature and Humidity Sensor','Laser Distance Sensor','Body Temperature Sensor','others']
+//% groups=['6-Axis Inertial Measurement Unit', 'Air Quality Sensor','TVOC Sensor','High Precision Temperature and Humidity Sensor','IOT','Laser Distance Sensor','Body Temperature Sensor','others']
 namespace HANSHIN_STEM_SENSORS {
 /**
  * AIMaker STEM Sensors
@@ -355,6 +355,31 @@ namespace HANSHIN_STEM_SENSORS {
         basic.pause(100)
     }
 
+    //% blockId=setWifiInfo block="Connect to WIFI, |SSID=%name Password=%password"
+    //% group="IOT"
+    export function setWifiInfo(name: string, password: string): void {
+        serial.writeString("AT+CWMODE=3")
+        basic.pause(200)        
+        let cmd = "AT+CWJAP=\"" + name + "\",\"" + password + "\""
+        basic.pause(10000)
+    }
+
+    //% blockId=TriggerEvent block="Trigger event, |key=%key event=%event"
+    //% group="IOT"
+    export function triggerEvent(key: string, event: string): void {
+        let cmd2 = "https://maker.ifttt.com/trigger/" + event + "/with/key/" + key
+        serial.writeString(cmd2)
+        basic.pause(100)
+    }
+    
+    //% blockId=triggerThingSpeakEvent block="Trigger thing speak event, |key=%key field=%field value=%value"
+    //% field.min=1 field.defl=1
+    //% group="IOT"
+    export function triggerThingSpeakEvent(key: string, field:number, value: string): void {
+        let cmd2 = "https://api.thingspeak.com/update?api_key=" + key + "&field" + field +"=" + value
+        serial.writeString(cmd2)
+        basic.pause(100)
+    }
 
     let line = ""
     serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function () {
@@ -362,8 +387,16 @@ namespace HANSHIN_STEM_SENSORS {
         let h0 = line.substr(0,1)
         if( h0 == "A" )
         {
-            sensor=2
-            line = line.substr(1)
+            h0 = line.substr(0,2)
+            if( h0 == "AT" )
+            {
+                sensor = 100
+            }
+            else
+            {
+                sensor=2
+                line = line.substr(1)
+            }
         } else if( h0 == "B" )
         {
             sensor=2
@@ -388,6 +421,10 @@ namespace HANSHIN_STEM_SENSORS {
         {
             sensor=6
             line = line.substr(1)
+        }
+        else
+        {
+            sensor=100
         }
 
         switch( sensor ) {
