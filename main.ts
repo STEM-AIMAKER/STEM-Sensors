@@ -386,7 +386,8 @@ namespace HANSHIN_STEM_SENSORS {
 
     let line = ""
     serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function () {
-        line = serial.readLine()  
+        line = serial.readLine() 
+        serial.writeString(line)
         let h0 = line.substr(0,1)
         if( h0 == "A" )
         {
