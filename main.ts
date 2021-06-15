@@ -389,6 +389,7 @@ namespace HANSHIN_STEM_SENSORS {
         line = serial.readLine() 
         serial.writeString(line)
         let h0 = line.substr(0,1)
+        sensor = 100
         if( h0 == "A" )
         {
             h0 = line.substr(0,2)
@@ -396,32 +397,32 @@ namespace HANSHIN_STEM_SENSORS {
             {
                 sensor = 100
             }
-            else
+            else if( line.length == 18 )
             {
                 sensor=2
                 line = line.substr(1)
             }
         } else if( h0 == "B" )
         {
-            sensor=2
-            line = line.substr(1)
-        } else if( h0== "C" )
-        {
+            //sensor=2
+            //line = line.substr(1)
+        } else if( h0== "C" && line.length == 9 )
+        {            
             sensor=3
             line = line.substr(1)
-        }else if( h0== "D" )
+        }else if( h0== "D" && line.length == 11)
         {
             sensor=4
             line = line.substr(1)
-        }else if( h0== "E" )
+        }else if( h0== "E" && line.length == 12 )
         {
             sensor=5
             line = line.substr(1)
-        }else if( h0== "F" )
+        }else if( h0== "F" && line.length == 7 )
         {
             sensor=7
             line = line.substr(1)
-        }else if( h0== "G" )
+        }else if( h0== "G" && line.length == 6 )
         {
             sensor=6
             line = line.substr(1)
