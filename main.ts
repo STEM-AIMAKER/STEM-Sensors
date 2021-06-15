@@ -37,7 +37,8 @@ namespace HANSHIN_STEM_SENSORS {
     //% Rx.fieldEditor="gridpicker" Rx.fieldOptions.columns=4
     function initSerial(Tx: SerialPin, Rx: SerialPin): void {
         serial.redirect(Tx, Rx, 9600)
-        serial.setRxBufferSize(64)
+        serial.setRxBufferSize(128)
+        serial.setTxBufferSize(128)
         buffer = serial.readString()
         basic.pause(100)
         serial.writeString("CM")
@@ -388,9 +389,6 @@ namespace HANSHIN_STEM_SENSORS {
 
     serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function () {
         let line = serial.readLine() 
-        serial.writeString("read:"+line)
-        return ;
-
         if( line.length <= 1 )
             return ;
         let h0 = line.substr(0,1)
