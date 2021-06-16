@@ -364,8 +364,9 @@ namespace HANSHIN_STEM_SENSORS {
     export function setWifiInfo(name: string, password: string,Tx: SerialPin, Rx: SerialPin): void {
         initSerial(Tx,Rx)
         serial.writeString("AT+CWMODE=3")
-        basic.pause(200)        
-        let cmd = "AT+CWJAP=\"" + name + "\",\"" + password + "\""
+        basic.pause(300)        
+        let cmdwifi = "AT+CWJAP=\"" + name + "\",\"" + password + "\""
+        serial.writeString(cmdwifi)
         basic.pause(10000)
     }
 
