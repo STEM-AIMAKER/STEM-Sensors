@@ -138,7 +138,7 @@ namespace HANSHIN_STEM_SENSORS {
         return angle_x;
     }
     
-    //% blockId=queryGyroData block="Read Air Quality data" 
+    //% blockId=queryGyroData block="Read gyro data" 
     //% group="6-Axis Inertial Measurement Unit"
     export function queryGyroData() : void {
         sensor = 2
@@ -177,7 +177,7 @@ namespace HANSHIN_STEM_SENSORS {
         return pm10;
     }
     
-    //% blockId=queryGyroData block="Read air quality data" 
+    //% blockId=queryPMT7Data block="Read Air Quality data" 
     //% group="Air Quality Sensor"
     export function queryPMT7Data() : void {
         sensor = 3
