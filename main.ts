@@ -2,13 +2,13 @@
  * AIMaker STEM Sensors
  */
 //% color=190 weight=100 icon="\uf1ec" block="AIMaker: UART Sensors"
-//% groups=['6-Axis Inertial Measurement Unit', 'Air Quality Sensor','TVOC Sensor','High Precision Temperature and Humidity Sensor','IOT','Laser Distance Sensor','Body Temperature Sensor','others']
+//% groups=['6-Axis Inertial Measurement Unit', 'Air Quality Sensor','TVOC Sensor','High Precision Temperature and Humidity Sensor','IOT','Laser Distance Sensor','Body Temperature Sensor','Renewable energy board(M03U)','others']
 namespace HANSHIN_STEM_SENSORS {
 /**
  * AIMaker STEM Sensors
  */
-// color=190 weight=100 icon="\uf1ec" block="AIMaker: UART Sensors"
-// groups=['6-Axis Inertial Measurement Unit', 'Air Quality Sensor','TVOC Sensor','High Precision Temperature and Humidity Sensor','Laser Distance Sensor','Body Temperature Sensor','others']
+//% color=190 weight=100 icon="\uf1ec" block="AIMaker: UART Sensors"
+//% groups=['6-Axis Inertial Measurement Unit', 'Air Quality Sensor','TVOC Sensor','High Precision Temperature and Humidity Sensor','IOT','Laser Distance Sensor','Body Temperature Sensor','Renewable energy board(M03U)','others']
     let buffer = ""
     let sensor=0
     let angle_x = 0.0
@@ -24,6 +24,12 @@ namespace HANSHIN_STEM_SENSORS {
 //     let dht11_temperature = -999.0
 //     let dht11_readSuccessful = false
     let tof_distance = 0
+
+    // M03U
+    let batteryV = 0
+    let batteryA = 0
+    let chargeV = 0
+    let chargeA = 0
     
     export enum MODE {
         //% blockId="Active" block="Active"
@@ -348,8 +354,8 @@ namespace HANSHIN_STEM_SENSORS {
         sensor = 7
         initSerial(Tx,Rx)
         if( mode === MODE.Active ) {
-            let modeCmd= "CM+D05U="+activeInterval
-            serial.writeString(modeCmd)
+            let modeCmd2= "CM+D05U="+activeInterval
+            serial.writeString(modeCmd2)
         }
         else {
             serial.writeString("CM+D05U")
@@ -357,6 +363,37 @@ namespace HANSHIN_STEM_SENSORS {
         basic.pause(100)
     }
 
+    //% blockId=batteryVoltage block="Battery voltage(mv)" 
+    //% group="Renewable energy board(M03U)"
+    export function batteryVoltage(): number {
+        return batteryV;
+    }
+
+    //% blockId=batteryCurrent block="Battery current(ma)" 
+    //% group="Renewable energy board(M03U)"
+    export function batteryCurrent(): number {
+       return batteryA;
+    }
+
+     //% blockId=chargeVoltage block="Charge voltage(mv)" 
+    //% group="Renewable energy board(M03U)"
+    export function chargeVoltage(): number {
+       return chargeV;
+    }
+
+     //% blockId=chargeCurrent block="Charge current(ma)" 
+    //% group="Renewable energy board(M03U)"
+    export function chargeCurrent(): number {
+       return chargeA;
+    }
+
+    //% blockId=queryM03UData block="Query M03U data" 
+    //% group="Renewable energy board(M03U)"
+    export function queryM03UData(Tx: SerialPin, Rx: SerialPin): void {
+        initSerial(Tx,Rx)
+        serial.writeString("CM+M03U")
+        basic.pause(100)
+    }
     //% blockId=setWifiInfo block="Connect to WIFI, |SSID=%name Password=%password at serial TX=%Tx Rx=%Rx"
     //% Tx.fieldEditor="gridpicker" Tx.fieldOptions.columns=4
     //% Rx.fieldEditor="gridpicker" Rx.fieldOptions.columns=4
@@ -382,8 +419,8 @@ namespace HANSHIN_STEM_SENSORS {
     //% field.min=1 field.defl=1
     //% group="IOT"
     export function triggerThingSpeakEvent(key: string, field:number, value: string): void {
-        let cmd2 = "https://api.thingspeak.com/update?api_key=" + key + "&field" + field +"=" + value
-        serial.writeString(cmd2)
+        let cmd22 = "https://api.thingspeak.com/update?api_key=" + key + "&field" + field +"=" + value
+        serial.writeString(cmd22)
         basic.pause(100)
     }
 
@@ -429,6 +466,11 @@ namespace HANSHIN_STEM_SENSORS {
         }else if( h0== "G" && line.length == 5 )
         {
             sensor=6
+            line = line.substr(1)
+        }
+        else if( h0 == "M" && line.length == 21 )
+        {
+            sensor =8
             line = line.substr(1)
         }
         else
@@ -525,6 +567,14 @@ namespace HANSHIN_STEM_SENSORS {
                 mlxTempture = parseFloat(line.substr(1,5))
                 if(line.substr(0,1) === "-" )
                     mlxTempture *= -1
+            }
+            break;
+            case 8:
+            {
+                batteryV = parseInt(line.substr(1,4))
+                batteryA = parseInt(line.substr(6,4))
+                chargeV = parseInt(line.substr(11,4))
+                chargeA = parseInt(line.substr(16,4))
             }
             break;
         }
