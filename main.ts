@@ -387,8 +387,10 @@ namespace HANSHIN_STEM_SENSORS {
        return chargeA;
     }
 
-    //% blockId=queryM03UData block="Query M03U data" 
+    //% blockId=queryM03UData block="Query M03U data at serial TX=%Tx Rx=%Rx" 
     //% group="Renewable energy board(M03U)"
+    //% Tx.fieldEditor="gridpicker" Tx.fieldOptions.columns=4
+    //% Rx.fieldEditor="gridpicker" Rx.fieldOptions.columns=4
     export function queryM03UData(Tx: SerialPin, Rx: SerialPin): void {
         initSerial(Tx,Rx)
         serial.writeString("CM+M03U")
